@@ -3,8 +3,9 @@
     {
       "type": "CollideMouseOperator",
       "properties": {
-        "rayLenght": 100.0,
-        "pointRadius": 1.0
+        "rayLenght": 1000.0,
+        "pointRadius": 2.0,
+        "collisionExpantionAmount": 2.0
       }
     }
   ]

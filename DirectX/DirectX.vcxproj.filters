@@ -13,6 +13,7 @@
     <FxCompile Include="Shader\MeshTexture.hlsl" />
     <FxCompile Include="Shader\NormalMap.hlsl" />
     <FxCompile Include="Shader\SkinMesh.hlsl" />
+    <FxCompile Include="Shader\Point3D.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Component\ComponentManager.cpp" />
@@ -180,6 +181,7 @@
     <ClCompile Include="Mesh\Fbx\FbxAnimationTime.cpp" />
     <ClCompile Include="Component\Mesh\SkinMeshComponent.cpp" />
     <ClCompile Include="Component\CollideOperation\CollideMouseOperator.cpp" />
+    <ClCompile Include="DebugLayer\PointRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component\ComponentManager.h" />
@@ -393,5 +395,6 @@
     <ClInclude Include="Mesh\Bone.h" />
     <ClInclude Include="Component\Mesh\SkinMeshComponent.h" />
     <ClInclude Include="Component\CollideOperation\CollideMouseOperator.h" />
+    <ClInclude Include="DebugLayer\PointRenderer.h" />
   </ItemGroup>
 </Project>

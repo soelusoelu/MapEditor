@@ -10,6 +10,7 @@ class Hierarchy;
 class Inspector;
 class Log;
 class Pause;
+class PointRenderer;
 class LineRenderer2D;
 class LineRenderer3D;
 
@@ -36,6 +37,7 @@ public:
     static Hierarchy& hierarchy();
     static Inspector& inspector();
     static Pause& pause();
+    static PointRenderer& pointRenderer();
     static LineRenderer2D& lineRenderer2D();
     static LineRenderer3D& lineRenderer3D();
 
@@ -46,6 +48,7 @@ private:
     static inline Hierarchy* mHierarchy = nullptr;
     static inline Inspector* mInspector = nullptr;
     static inline Pause* mPause = nullptr;
+    static inline PointRenderer* mPointRenderer = nullptr;
     static inline LineRenderer2D* mLineRenderer2D = nullptr;
     static inline LineRenderer3D* mLineRenderer3D = nullptr;
 };

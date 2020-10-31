@@ -182,6 +182,7 @@
     <ClCompile Include="Mesh\Fbx\FbxMeshParser.cpp" />
     <ClCompile Include="Mesh\Fbx\FbxMaterialParser.cpp" />
     <ClCompile Include="Component\Mesh\SkinMeshComponent.cpp" />
+    <ClCompile Include="DebugLayer\PointRenderer.cpp" />
     <ClCompile Include="System\Shader\InputElementManager.cpp" />
     <ClCompile Include="System\Shader\ConstantBufferManager.cpp" />
     <ClCompile Include="DebugLayer\LineRenderer\LineRenderer.cpp" />
@@ -352,6 +353,7 @@
     <ClInclude Include="Collision\Ray.h" />
     <ClInclude Include="Collision\Square.h" />
     <ClInclude Include="Component\Mesh\SkinMeshComponent.h" />
+    <ClInclude Include="DebugLayer\PointRenderer.h" />
     <ClInclude Include="System\Shader\InputElementManager.h" />
     <ClInclude Include="System\Shader\ConstantBufferManager.h" />
     <ClInclude Include="DebugLayer\LineRenderer\LineRenderer.h" />
@@ -604,6 +606,16 @@
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
     </FxCompile>
     <FxCompile Include="Shader\NormalMap.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="Shader\Point3D.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Effect</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.0</ShaderModel>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>

@@ -39,6 +39,19 @@ void Renderer::renderMesh() const {
     dx.blendState()->translucent();
 }
 
+void Renderer::renderPoint3D() const {
+    auto& dx = MyDirectX::DirectX::instance();
+    //ビューポートの設定
+    dx.setViewport(Window::width(), Window::height());
+    //プリミティブ・トポロジーをセット
+    dx.setPrimitive(PrimitiveType::POINT_LIST);
+    //半透明合成
+    dx.blendState()->translucent();
+    //デプステスト有効化
+    dx.depthStencilState()->depthTest(true);
+    dx.depthStencilState()->depthMask(true);
+}
+
 void Renderer::renderLine2D(Matrix4* proj) const {
     //原点をスクリーン左上にするために平行移動
     proj->m[3][0] = -1.f;

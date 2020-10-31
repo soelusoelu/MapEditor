@@ -41,6 +41,12 @@ struct TransparentConstantBuffer {
     ALIGN16 Vector3 cameraPos; //カメラ位置
 };
 
+//ポイント
+struct PointConstantBuffer {
+    Matrix4 wvp;
+    Vector4 color;
+};
+
 //ライン
 struct LineConstantBuffer {
     Matrix4 wp;

@@ -39,6 +39,8 @@ private:
     void updateAABB();
     //AABBの点を更新する
     void updatePoints();
+    //最新の点からtransformを掛ける前の点を求める
+    void computeDefaultPoint();
     //当たり判定を可視化する
     void renderCollision();
 

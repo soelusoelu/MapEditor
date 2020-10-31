@@ -97,6 +97,10 @@ bool Vector3::equal(const Vector3& right) const {
     return (Math::equal(x, right.x) && Math::equal(y, right.y) && Math::equal(z, right.z));
 }
 
+bool Vector3::equal(const Vector3& left, const Vector3& right) {
+    return (Math::equal(left.x, right.x) && Math::equal(left.y, right.y) && Math::equal(left.z, right.z));
+}
+
 float Vector3::lengthSq() const {
     return (x * x + y * y + z * z);
 }

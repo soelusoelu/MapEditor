@@ -6,6 +6,7 @@
 #include "LineRenderer/LineRenderer3D.h"
 #include "Log.h"
 #include "Pause.h"
+#include "PointRenderer.h"
 #include "../Device/DrawString.h"
 #include "../System/GlobalFunction.h"
 #include "../System/SystemInclude.h"
@@ -17,6 +18,7 @@ void DebugUtility::create() {
     mHierarchy = new Hierarchy(mDrawString);
     mInspector = new Inspector(mDrawString);
     mPause = new Pause();
+    mPointRenderer = new PointRenderer();
     mLineRenderer2D = new LineRenderer2D();
     mLineRenderer3D = new LineRenderer3D();
 }
@@ -37,6 +39,7 @@ void DebugUtility::initialize() {
     mHierarchy->initialize();
     mInspector->initialize();
     mPause->initialize();
+    mPointRenderer->initialize();
     mLineRenderer2D->initialize();
     mLineRenderer3D->initialize();
 }
@@ -44,6 +47,7 @@ void DebugUtility::initialize() {
 void DebugUtility::finalize() {
     safeDelete(mLineRenderer3D);
     safeDelete(mLineRenderer2D);
+    safeDelete(mPointRenderer);
     safeDelete(mPause);
     safeDelete(mInspector);
     safeDelete(mHierarchy);
@@ -92,6 +96,10 @@ Inspector& DebugUtility::inspector() {
 
 Pause& DebugUtility::pause() {
     return *mPause;
+}
+
+PointRenderer& DebugUtility::pointRenderer() {
+    return *mPointRenderer;
 }
 
 LineRenderer2D& DebugUtility::lineRenderer2D() {

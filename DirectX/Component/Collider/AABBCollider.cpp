@@ -10,8 +10,7 @@ AABBCollider::AABBCollider(GameObject& gameObject) :
     mDefaultMin(Vector3::zero),
     mDefaultMax(Vector3::zero),
     mIsRenderCollision(true),
-    mLoadedProperties(false)
-{
+    mLoadedProperties(false) {
 }
 
 AABBCollider::~AABBCollider() = default;
@@ -19,6 +18,7 @@ AABBCollider::~AABBCollider() = default;
 void AABBCollider::start() {
     Collider::start();
 
+    //ファイルから値を読み込んでいないなら頂点から形成する
     if (!mLoadedProperties) {
         auto meshComponent = getComponent<MeshComponent>();
         if (meshComponent) {
@@ -26,10 +26,6 @@ void AABBCollider::start() {
             //メッシュ情報からAABBを作成する
             createAABB(mesh);
         }
-    } else {
-        //ファイルから値を読み込んだなら
-        mDefaultMin = mAABB.min;
-        mDefaultMax = mAABB.max;
     }
 
     //早速transformが変わっているかもしれないから更新する
@@ -58,10 +54,12 @@ void AABBCollider::onEnable(bool value) {
 }
 
 void AABBCollider::loadProperties(const rapidjson::Value& inObj) {
-    if (JsonHelper::getVector3(inObj, "min", &mAABB.min)) {
+    if (JsonHelper::getVector3(inObj, "min", &mDefaultMin)) {
+        mAABB.min = mDefaultMin;
         mLoadedProperties = true;
     }
-    if (JsonHelper::getVector3(inObj, "max", &mAABB.max)) {
+    if (JsonHelper::getVector3(inObj, "max", &mDefaultMax)) {
+        mAABB.max = mDefaultMax;
         mLoadedProperties = true;
     }
     JsonHelper::getBool(inObj, "isRenderCollision", &mIsRenderCollision);
@@ -83,6 +81,10 @@ void AABBCollider::drawDebugInfo(ComponentDebug::DebugInfoList* inspect) const {
 void AABBCollider::set(const Vector3& min, const Vector3& max) {
     mAABB.min = min;
     mAABB.max = max;
+
+    //デフォルト点を修正する
+    computeDefaultPoint();
+
     if (mIsAutoUpdate) {
         mIsAutoUpdate = false;
     }
@@ -182,6 +184,29 @@ void AABBCollider::updatePoints() {
     mPoints[5] = Vector3(max.x, max.y, min.z);
     mPoints[6] = Vector3(min.x, max.y, max.z);
     mPoints[7] = max;
+}
+
+void AABBCollider::computeDefaultPoint() {
+    const auto& t = transform();
+    const auto& pos = t.getPosition();
+    const auto& scale = t.getScale();
+
+    //updateAABBの逆順に計算していく
+    auto min = Vector3(
+        mAABB.min.x / scale.x - pos.x,
+        mAABB.min.y / scale.y - pos.y,
+        mAABB.min.z / scale.z - pos.z
+    );
+    auto max = Vector3(
+        mAABB.max.x / scale.x - pos.x,
+        mAABB.max.y / scale.y - pos.y,
+        mAABB.max.z / scale.z - pos.z
+    );
+    AABB aabb(min + t.getPivot(), max + t.getPivot());
+
+    //更新する
+    mDefaultMin = aabb.min;
+    mDefaultMax = aabb.max;
 }
 
 void AABBCollider::renderCollision() {

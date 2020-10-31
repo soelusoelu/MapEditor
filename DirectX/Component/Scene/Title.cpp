@@ -18,8 +18,8 @@ Title::~Title() = default;
 
 void Title::start() {
     mScene = getComponent<Scene>();
-    mTest = GameObjectCreater::create("CollideOperator");
     mTest = GameObjectCreater::create("Niwa");
+    GameObjectCreater::create("CollideOperator");
 }
 
 void Title::update() {

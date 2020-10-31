@@ -106,6 +106,28 @@ bool Intersect::intersectRaySphere(const Ray& ray, const Sphere& sphere, Vector3
     return false;
 }
 
+bool Intersect::intersectRaySphere(const Ray& ray, const Sphere& sphere, int numDivision) {
+    Vector3 intersectPoint;
+
+    //分割数が0以下なら1回で終了
+    if (numDivision <= 0) {
+        return intersectRaySphere(ray, sphere, intersectPoint);
+    }
+
+    Ray r;
+    //レイを分割する
+    auto rayDiv = (ray.end - ray.start) / numDivision;
+    for (int i = 0; i < numDivision; ++i) {
+        r.start = ray.start + rayDiv * i;
+        r.end = r.start + rayDiv;
+        if (intersectRaySphere(r, sphere, intersectPoint)) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 bool testSidePlane(float start, float end, float negd, std::vector<float>& out) {
     float denom = end - start;
     if (Math::nearZero(denom)) {
