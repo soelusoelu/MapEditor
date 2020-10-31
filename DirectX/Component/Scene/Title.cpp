@@ -20,7 +20,6 @@ void Title::start() {
     mScene = getComponent<Scene>();
     mTest = GameObjectCreater::create("CollideOperator");
     mTest = GameObjectCreater::create("Niwa");
-    mTest->transform().setScale(3.f);
 }
 
 void Title::update() {

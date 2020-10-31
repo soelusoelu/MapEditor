@@ -8,7 +8,6 @@
 #include "../../Input/Input.h"
 #include "../../Transform/Transform3D.h"
 #include "../../Utility/LevelLoader.h"
-#include <array>
 
 CollideMouseOperator::CollideMouseOperator(GameObject& gameObject) :
     Component(gameObject),
@@ -17,7 +16,7 @@ CollideMouseOperator::CollideMouseOperator(GameObject& gameObject) :
     mSelectAABB(nullptr),
     mRayLenght(0.f),
     mPointRadius(0.f),
-    mSelectPoint(Vector3::zero),
+    mSelectSurfaceIndex(0),
     mIsSelectedPoint(false)
 {
 }
@@ -54,11 +53,11 @@ void CollideMouseOperator::update() {
     }
     //マウスの左ボタンを押し続けていたら
     if (mouse.getMouseButton(MouseCode::LeftButton)) {
-
+        updateBox(rayCameraToMousePos);
     }
     //マウスの左ボタンを離した瞬間だったら
     if (mouse.getMouseButtonUp(MouseCode::LeftButton)) {
-
+        mIsSelectedPoint = false;
     }
 }
 
@@ -114,12 +113,30 @@ void CollideMouseOperator::selectBoxPoint(const Ray& ray) {
     //AABBを構成するボックスの点を取得する
     const auto& points = mSelectAABB->getBoxPoints();
 
-    std::array<Vector3, 6> surfaces = {
-        (points[3] + points[0]) / 2.f,
-        (points[7] + points[4]) / 2.f,
-        (points[3] + points[5]) / 2.f,
-        (points[2] + points[4]) / 2.f,
-        (points[5] + points[0]) / 2.f,
-        (points[7] + points[2]) / 2.f
-    };
+    const auto& surfaces = mSelectAABB->getBoxSurfacesCenterAndNormal();
+
+    //すべての面の中心位置を球に見立ててレイと球の当たり判定を行う
+    Vector3 intersectPoint;
+    for (int i = 0; i < surfaces.size(); ++i) {
+        if (Intersect::intersectRaySphere(ray, { surfaces[i].first, mPointRadius }, intersectPoint)) {
+            mSelectSurfaceIndex = i;
+            mIsSelectedPoint = true;
+            return;
+        }
+    }
+}
+
+void CollideMouseOperator::updateBox(const Ray& ray) {
+    if (!mIsSelectedPoint) {
+        return;
+    }
+
+    AABB temp(mSelectAABB->getAABB());
+    const auto& surface = mSelectAABB->getBoxSurfacesCenterAndNormal()[mSelectSurfaceIndex];
+
+    //面の移動量を決める
+    auto amount = Vector3::dot(Vector3::normalize(ray.end - ray.start), surface.second);
+
+    temp.updateMinMax(surface.first + surface.second * amount * 2.f);
+    mSelectAABB->set(temp.min, temp.max);
 }

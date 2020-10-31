@@ -96,6 +96,18 @@ const std::array<Vector3, 8>& AABBCollider::getBoxPoints() const {
     return mPoints;
 }
 
+std::array<std::pair<Vector3, Vector3>, 6> AABBCollider::getBoxSurfacesCenterAndNormal() const {
+    return std::array<std::pair<Vector3, Vector3>, 6> {
+        //面の中心位置と法線を格納する
+        std::make_pair((mPoints[3] + mPoints[0]) / 2.f, Vector3::down),
+        std::make_pair((mPoints[7] + mPoints[4]) / 2.f, Vector3::up),
+        std::make_pair((mPoints[3] + mPoints[5]) / 2.f, Vector3::right),
+        std::make_pair((mPoints[2] + mPoints[4]) / 2.f, Vector3::left),
+        std::make_pair((mPoints[5] + mPoints[0]) / 2.f, Vector3::back),
+        std::make_pair((mPoints[7] + mPoints[2]) / 2.f, Vector3::forward)
+    };
+}
+
 void AABBCollider::setRenderCollision(bool value) {
     mIsRenderCollision = value;
 }

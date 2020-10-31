@@ -4,7 +4,7 @@
       "type": "CollideMouseOperator",
       "properties": {
         "rayLenght": 100.0,
-        "pointRadius": 5.0
+        "pointRadius": 1.0
       }
     }
   ]

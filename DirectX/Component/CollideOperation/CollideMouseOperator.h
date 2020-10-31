@@ -3,8 +3,10 @@
 #include "../Component.h"
 #include "../../Collision/Collision.h"
 #include "../../Math/Math.h"
+#include <array>
 #include <memory>
 #include <vector>
+#include <utility>
 
 class Camera;
 class AABBCollider;
@@ -27,6 +29,8 @@ private:
     bool intersectRayGroundMeshes(const Ray& ray);
     //AABBのボックスの点を選択する
     void selectBoxPoint(const Ray& ray);
+    //当たり判定を更新する
+    void updateBox(const Ray& ray);
 
 private:
     std::shared_ptr<Camera> mCamera;
@@ -42,7 +46,7 @@ private:
     //ボックス一個一個から球を作る際の半径
     float mPointRadius;
 
-
-    Vector3 mSelectPoint;
+    //面の中心位置と法線
+    int mSelectSurfaceIndex;
     bool mIsSelectedPoint;
 };

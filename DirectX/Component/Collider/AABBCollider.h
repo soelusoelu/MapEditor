@@ -6,6 +6,7 @@
 #include "../../Mesh/IMesh.h"
 #include "../../Mesh/IMeshLoader.h"
 #include <array>
+#include <utility>
 
 class AABBCollider : public Collider {
 public:
@@ -24,6 +25,8 @@ public:
     const AABB& getAABB() const;
     //AABBのすべての点を取得する
     const std::array<Vector3, 8>& getBoxPoints() const;
+    //AABBのすべての面の中心位置と法線を取得する
+    std::array<std::pair<Vector3, Vector3>, 6> getBoxSurfacesCenterAndNormal() const;
     //当たり判定を可視化するか
     void setRenderCollision(bool value);
 
