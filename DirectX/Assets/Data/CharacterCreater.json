@@ -1,0 +1,35 @@
+{
+  "components": [
+    {
+      "type": "CharacterCreater",
+      "properties": {
+        "characterNames": [
+          "SphereTest",
+          "BoxTest",
+          "PLightTest"
+        ],
+        "spriteStartPosition": [ 64.0, 850.0 ],
+        "spriteScale": [ 0.7, 0.7 ],
+        "spriteSpace": 48.0
+      }
+    },
+    {
+      "type": "SpriteComponent",
+      "properties": {
+        "fileName": "Character/red.png"
+      }
+    },
+    {
+      "type": "SpriteComponent",
+      "properties": {
+        "fileName": "Character/green.png"
+      }
+    },
+    {
+      "type": "SpriteComponent",
+      "properties": {
+        "fileName": "Character/blue.png"
+      }
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "properties": {
+    "position": [ 0.0, 7.0, 0.0 ],
+    "rotation": [ -90.0, 180.0, 0.0 ],
+    "scale": [ 0.25, 0.25, 0.25 ]
+  },
+  "components": [
+    {
+      "type": "SkinMeshComponent",
+      "properties": {
+        "fileName": "zunko_model_data/TouhokuZunko_FromBlender_20140620_3.fbx",
+        "shaderName": "SkinMesh.hlsl"
+      }
+    }
+  ]
+}
