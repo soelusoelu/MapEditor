@@ -79,6 +79,14 @@ Vector3 Camera::screenToWorldPoint(const Vector2 & position, float z) {
     return Vector3::transformWithPerspDiv(Vector3(position, z), m);
 }
 
+Ray Camera::screenToRay(const Vector2& position, float z) {
+    Ray ray;
+    ray.start = getPosition();
+    ray.end = screenToWorldPoint(position, z);
+
+    return ray;
+}
+
 bool Camera::viewFrustumCulling(const Vector3& pos, float radius) const {
     //ワールド空間からビュー空間に変換
     auto viewPos = Vector3::transform(pos, mView);

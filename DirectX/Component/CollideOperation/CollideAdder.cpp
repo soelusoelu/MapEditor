@@ -5,14 +5,10 @@
 #include "../../Input/Input.h"
 
 CollideAdder::CollideAdder(GameObject& gameObject) :
-    Component(gameObject)
-{
+    Component(gameObject) {
 }
 
 CollideAdder::~CollideAdder() = default;
-
-void CollideAdder::start() {
-}
 
 void CollideAdder::update() {
     if (Input::keyboard().getKeyDown(KeyCode::J)) {

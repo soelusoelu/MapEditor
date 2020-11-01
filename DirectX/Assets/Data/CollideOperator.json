@@ -3,10 +3,19 @@
     {
       "type": "CollideMouseOperator",
       "properties": {
-        "rayLenght": 1000.0,
-        "pointRadius": 2.0,
+        "rayLenght": 1000.0
+      }
+    },
+    {
+      "type": "AABBMouseScaler",
+      "properties": {
+        "editPointRadius": 2.0,
         "collisionExpantionAmount": 2.0
       }
+    },
+    {
+      "type": "CollideAdder",
+      "properties": {}
     }
   ]
 }

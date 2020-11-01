@@ -7,7 +7,6 @@ class CollideAdder : public Component {
 public:
     CollideAdder(GameObject& gameObject);
     ~CollideAdder();
-    virtual void start() override;
     virtual void update() override;
 
 private:

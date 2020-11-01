@@ -6,6 +6,7 @@
 #include "../Component/Camera/CameraMove.h"
 #include "../Component/CharacterOperation/CharacterCreater.h"
 #include "../Component/CharacterOperation/DragAndDropCharacter.h"
+#include "../Component/CollideOperation/AABBMouseScaler.h"
 #include "../Component/CollideOperation/CollideAdder.h"
 #include "../Component/CollideOperation/CollideMouseOperator.h"
 #include "../Component/Collider/AABBCollider.h"
@@ -47,6 +48,7 @@ GameObjectFactory::GameObjectFactory() {
     ADD_COMPONENT(CharacterCreater);
     ADD_COMPONENT(DragAndDropCharacter);
 
+    ADD_COMPONENT(AABBMouseScaler);
     ADD_COMPONENT(CollideAdder);
     ADD_COMPONENT(CollideMouseOperator);
 
