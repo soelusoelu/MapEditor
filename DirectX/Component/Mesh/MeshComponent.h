@@ -34,6 +34,11 @@ public:
     //描画
     virtual void draw(const Camera& camera, const DirectionalLight& dirLight) const;
 
+    //メッシュを変更する
+    void createMesh(const std::string& fileName, const std::string& directoryPath);
+    //デフォルトのシェーダーに変更する
+    void setDefaultShader();
+
     //状態
     void destroy();
     void setActive(bool value);
@@ -50,12 +55,16 @@ public:
     static void setMeshManager(MeshManager* manager);
 
 private:
+    MeshComponent(const MeshComponent&) = delete;
+    MeshComponent& operator=(const MeshComponent&) = delete;
+
     void addToManager();
 
 protected:
     std::shared_ptr<Mesh> mMesh;
     std::unique_ptr<Shader> mShader;
     std::string mFileName;
+    std::string mDirectoryPath;
     State mState;
     float mAlpha;
 

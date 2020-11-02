@@ -18,6 +18,11 @@
       }
     },
     {
+      "type": "MeshAdder",
+      "properties": {
+      }
+    },
+    {
       "type": "CollideAdder",
       "properties": {
       }

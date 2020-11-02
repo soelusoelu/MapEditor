@@ -7,6 +7,7 @@
 class Camera;
 class MeshComponent;
 class AABBSelector;
+class MeshAdder;
 class CollideAdder;
 
 class CollideMouseOperator : public Component {
@@ -26,10 +27,13 @@ private:
     void selectMesh();
     //すべての地形メッシュとレイの衝突判定を行う
     bool intersectRayGroundMeshes(std::shared_ptr<MeshComponent>& out);
+    //メッシュにコライダーを追加する
+    void addCollider(MeshComponent& mesh);
 
 private:
     std::shared_ptr<Camera> mCamera;
     std::shared_ptr<AABBSelector> mAABBSelector;
+    std::shared_ptr<MeshAdder> mMeshAdder;
     std::shared_ptr<CollideAdder> mCollideAdder;
 
     //全地形メッシュ配列

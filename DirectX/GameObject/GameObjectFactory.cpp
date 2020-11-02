@@ -10,6 +10,7 @@
 #include "../Component/CollideOperation/AABBSelector.h"
 #include "../Component/CollideOperation/CollideAdder.h"
 #include "../Component/CollideOperation/CollideMouseOperator.h"
+#include "../Component/CollideOperation/MeshAdder.h"
 #include "../Component/Collider/AABBCollider.h"
 #include "../Component/Collider/CircleCollider.h"
 #include "../Component/Collider/SphereCollider.h"
@@ -53,6 +54,7 @@ GameObjectFactory::GameObjectFactory() {
     ADD_COMPONENT(AABBSelector);
     ADD_COMPONENT(CollideAdder);
     ADD_COMPONENT(CollideMouseOperator);
+    ADD_COMPONENT(MeshAdder);
 
     ADD_COMPONENT(AABBCollider);
     ADD_COMPONENT(CircleCollider);

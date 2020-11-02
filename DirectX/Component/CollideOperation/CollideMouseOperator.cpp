@@ -1,6 +1,7 @@
 ﻿#include "CollideMouseOperator.h"
 #include "AABBSelector.h"
 #include "CollideAdder.h"
+#include "MeshAdder.h"
 #include "../Camera/Camera.h"
 #include "../Mesh/MeshComponent.h"
 #include "../../Collision/Collision.h"
@@ -13,6 +14,7 @@ CollideMouseOperator::CollideMouseOperator(GameObject& gameObject)
     , mCamera(nullptr)
     , mAABBSelector(nullptr)
     , mCollideAdder(nullptr)
+    , mMeshAdder(nullptr)
     , mSelecteMesh(nullptr)
 {
 }
@@ -24,6 +26,7 @@ void CollideMouseOperator::start() {
     mCamera = gameObjectManager.find("Camera")->componentManager().getComponent<Camera>();
 
     mAABBSelector = getComponent<AABBSelector>();
+    mMeshAdder = getComponent<MeshAdder>();
     mCollideAdder = getComponent<CollideAdder>();
 
     //指定のタグを含んでいるオブジェクトをすべて取得する
@@ -42,12 +45,22 @@ void CollideMouseOperator::update() {
     if (Input::mouse().getMouseButtonDown(MouseCode::LeftButton)) {
         clickMouseLeftButton();
     }
+
+    //コライダー追加するか
     if (Input::keyboard().getKeyDown(KeyCode::J)) {
         if (mSelecteMesh) {
-            //コライダーを追加する
-            mCollideAdder->addAABBCollide(*mSelecteMesh);
-            //コライダーを追加したことを知らせるために
-            mAABBSelector->setAABBsFromMesh(*mSelecteMesh);
+            //選択してるメッシュにコライダーを追加する
+            addCollider(*mSelecteMesh);
+        }
+    }
+
+    //マウスの右ボタンを押した瞬間だったら
+    if (Input::mouse().getMouseButtonDown(MouseCode::RightButton)) {
+        if (mSelecteMesh) {
+            //選択してるメッシュに新たにメッシュを追加する
+            auto newMesh = mMeshAdder->addMesh(mSelecteMesh->gameObject());
+            //新しいメッシュにコライダーを追加する
+            addCollider(*newMesh);
         }
     }
 }
@@ -85,4 +98,11 @@ bool CollideMouseOperator::intersectRayGroundMeshes(std::shared_ptr<MeshComponen
     //どれとも衝突しなかった
     out = nullptr;
     return false;
+}
+
+void CollideMouseOperator::addCollider(MeshComponent& mesh) {
+    //メッシュにコライダーを追加する
+    mCollideAdder->addAABBCollide(mesh);
+    //コライダーを追加したことを知らせるために
+    mAABBSelector->setAABBsFromMesh(mesh);
 }

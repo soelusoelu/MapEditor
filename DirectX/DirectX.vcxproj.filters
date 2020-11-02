@@ -185,6 +185,7 @@
     <ClCompile Include="Component\CollideOperation\CollideAdder.cpp" />
     <ClCompile Include="Component\CollideOperation\AABBMouseScaler.cpp" />
     <ClCompile Include="Component\CollideOperation\AABBSelector.cpp" />
+    <ClCompile Include="Component\CollideOperation\MeshAdder.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component\ComponentManager.h" />
@@ -402,5 +403,6 @@
     <ClInclude Include="Component\CollideOperation\CollideAdder.h" />
     <ClInclude Include="Component\CollideOperation\AABBMouseScaler.h" />
     <ClInclude Include="Component\CollideOperation\AABBSelector.h" />
+    <ClInclude Include="Component\CollideOperation\MeshAdder.h" />
   </ItemGroup>
 </Project>

@@ -58,18 +58,27 @@ public:
     std::shared_ptr<T> getComponent() const {
         return componentManager().getComponent<T>();
     }
+
     //指定した型のコンポーネントをすべて取得
     template<typename T>
     std::vector<std::shared_ptr<T>> getComponents() const {
         return componentManager().getComponents<T>();
     }
+
     //コンポーネントの追加
     template <typename T>
-    void addComponent(const std::string& componentName) {
-        auto t = std::make_shared<T>(mGameObject);
+    static std::shared_ptr<T> addComponent(GameObject& gameObject, const std::string& componentName) {
+        auto t = std::make_shared<T>(gameObject);
         t->mComponentName = componentName;
         t->componentManager().addComponent(t);
         t->awake();
+        return t;
+    }
+
+    //自身にコンポーネントを追加する
+    template <typename T>
+    std::shared_ptr<T> addComponent(const std::string& componentName) {
+        return addComponent<T>(mGameObject, componentName);
     }
 
     //指定されたプロパティでコンポーネントを生成
