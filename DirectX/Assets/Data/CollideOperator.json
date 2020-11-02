@@ -3,7 +3,6 @@
     {
       "type": "CollideMouseOperator",
       "properties": {
-        "rayLenght": 1000.0
       }
     },
     {

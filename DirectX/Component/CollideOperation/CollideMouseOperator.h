@@ -7,6 +7,7 @@
 class Camera;
 class MeshComponent;
 class AABBMouseScaler;
+class CollideAdder;
 
 class CollideMouseOperator : public Component {
 public:
@@ -29,8 +30,10 @@ private:
 private:
     std::shared_ptr<Camera> mCamera;
     std::shared_ptr<AABBMouseScaler> mAABBScaler;
+    std::shared_ptr<CollideAdder> mCollideAdder;
+
     //全地形メッシュ配列
     std::vector<std::shared_ptr<MeshComponent>> mGroundMeshes;
     //メッシュが選択されているか
-    bool mSelectedMesh;
+    std::shared_ptr<MeshComponent> mSelecteMesh;
 };

@@ -1,5 +1,6 @@
 ﻿#include "CollideMouseOperator.h"
 #include "AABBMouseScaler.h"
+#include "CollideAdder.h"
 #include "../Camera/Camera.h"
 #include "../Mesh/MeshComponent.h"
 #include "../../Collision/Collision.h"
@@ -11,7 +12,8 @@ CollideMouseOperator::CollideMouseOperator(GameObject& gameObject) :
     Component(gameObject),
     mCamera(nullptr),
     mAABBScaler(nullptr),
-    mSelectedMesh(false) {
+    mCollideAdder(nullptr),
+    mSelecteMesh(nullptr) {
 }
 
 CollideMouseOperator::~CollideMouseOperator() = default;
@@ -21,6 +23,7 @@ void CollideMouseOperator::start() {
     mCamera = gameObjectManager.find("Camera")->componentManager().getComponent<Camera>();
 
     mAABBScaler = getComponent<AABBMouseScaler>();
+    mCollideAdder = getComponent<CollideAdder>();
 
     //指定のタグを含んでいるオブジェクトをすべて取得する
     const auto& grounds = gameObjectManager.findGameObjects("Ground");
@@ -38,10 +41,15 @@ void CollideMouseOperator::update() {
     if (Input::mouse().getMouseButtonDown(MouseCode::LeftButton)) {
         clickMouseLeftButton();
     }
+    if (Input::keyboard().getKeyDown(KeyCode::J)) {
+        if (mSelecteMesh) {
+            mCollideAdder->addAABBCollide(*mSelecteMesh);
+        }
+    }
 }
 
 void CollideMouseOperator::clickMouseLeftButton() {
-    if (mSelectedMesh) {
+    if (mSelecteMesh) {
         //メッシュが選択されているなら編集可
         mAABBScaler->selectBoxPoint();
     } else {
@@ -51,17 +59,13 @@ void CollideMouseOperator::clickMouseLeftButton() {
 }
 
 void CollideMouseOperator::selectMesh() {
-    //地形とレイとの衝突判定
-    std::shared_ptr<MeshComponent> hit;
-    mSelectedMesh = intersectRayGroundMeshes(hit);
-
-    //衝突していなかったら終了
-    if (!mSelectedMesh) {
+    //地形とレイが衝突していなかったら終了
+    if (!intersectRayGroundMeshes(mSelecteMesh)) {
         return;
     }
 
     //メッシュに付随するAABBを送る
-    mAABBScaler->setAABBFromMesh(*hit);
+    mAABBScaler->setAABBFromMesh(*mSelecteMesh);
 }
 
 bool CollideMouseOperator::intersectRayGroundMeshes(std::shared_ptr<MeshComponent>& out) {
@@ -78,5 +82,6 @@ bool CollideMouseOperator::intersectRayGroundMeshes(std::shared_ptr<MeshComponen
     }
 
     //どれとも衝突しなかった
+    out = nullptr;
     return false;
 }

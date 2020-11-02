@@ -2,12 +2,14 @@
 
 #include "../Component.h"
 
+class MeshComponent;
+
 //コライダーを追加するクラス
 class CollideAdder : public Component {
 public:
     CollideAdder(GameObject& gameObject);
     ~CollideAdder();
-    virtual void update() override;
+    void addAABBCollide(MeshComponent& mesh);
 
 private:
     CollideAdder(CollideAdder&) = delete;

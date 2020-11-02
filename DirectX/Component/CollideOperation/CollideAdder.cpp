@@ -1,8 +1,6 @@
 ﻿#include "CollideAdder.h"
-#include "../ComponentManager.h"
 #include "../Collider/AABBCollider.h"
-#include "../../GameObject/GameObject.h"
-#include "../../Input/Input.h"
+#include "../Mesh/MeshComponent.h"
 
 CollideAdder::CollideAdder(GameObject& gameObject) :
     Component(gameObject) {
@@ -10,8 +8,6 @@ CollideAdder::CollideAdder(GameObject& gameObject) :
 
 CollideAdder::~CollideAdder() = default;
 
-void CollideAdder::update() {
-    if (Input::keyboard().getKeyDown(KeyCode::J)) {
-        addComponent<AABBCollider>("AABBCollider");
-    }
+void CollideAdder::addAABBCollide(MeshComponent& mesh) {
+    mesh.addComponent<AABBCollider>("AABBCollider");
 }
