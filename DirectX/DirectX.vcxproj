@@ -165,6 +165,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Component\CollideOperation\AABBSelector.cpp" />
     <ClCompile Include="Component\CollideOperation\AABBMouseScaler.cpp" />
     <ClCompile Include="Component\CollideOperation\CollideAdder.cpp" />
     <ClCompile Include="Component\CollideOperation\CollideMouseOperator.cpp" />
@@ -335,6 +336,7 @@
     <ClCompile Include="Component\Sound\WaveformRenderSample.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Component\CollideOperation\AABBSelector.h" />
     <ClInclude Include="Component\CollideOperation\AABBMouseScaler.h" />
     <ClInclude Include="Component\CollideOperation\CollideAdder.h" />
     <ClInclude Include="Component\CollideOperation\CollideMouseOperator.h" />

@@ -165,12 +165,12 @@ bool Intersect::intersectRayAABB(const Ray& ray, const AABB& aabb, Vector3& inte
     testSidePlane(ray.start.z, ray.end.z, aabb.max.z, tValues);
 
     //t値を昇順で並べ替える
-    //std::sort(tValues.begin(), tValues.end(), [](
-    //    float a,
-    //    float b
-    //    ) {
-    //        return a < b;
-    //    });
+    std::sort(tValues.begin(), tValues.end(), [](
+        float a,
+        float b
+        ) {
+            return a < b;
+        });
 
     //ボックスに交点が含まれているか調べる
     for (const auto& t : tValues) {

@@ -6,7 +6,7 @@
 
 class Camera;
 class MeshComponent;
-class AABBMouseScaler;
+class AABBSelector;
 class CollideAdder;
 
 class CollideMouseOperator : public Component {
@@ -29,7 +29,7 @@ private:
 
 private:
     std::shared_ptr<Camera> mCamera;
-    std::shared_ptr<AABBMouseScaler> mAABBScaler;
+    std::shared_ptr<AABBSelector> mAABBSelector;
     std::shared_ptr<CollideAdder> mCollideAdder;
 
     //全地形メッシュ配列

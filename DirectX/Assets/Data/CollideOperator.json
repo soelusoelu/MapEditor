@@ -6,15 +6,21 @@
       }
     },
     {
+      "type": "AABBSelector",
+      "properties": {
+      }
+    },
+    {
       "type": "AABBMouseScaler",
       "properties": {
-        "editPointRadius": 2.0,
+        "editPointRadius": 0.5,
         "collisionExpantionAmount": 2.0
       }
     },
     {
       "type": "CollideAdder",
-      "properties": {}
+      "properties": {
+      }
     }
   ]
 }

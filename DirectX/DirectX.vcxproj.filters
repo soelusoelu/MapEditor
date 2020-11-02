@@ -184,6 +184,7 @@
     <ClCompile Include="DebugLayer\PointRenderer.cpp" />
     <ClCompile Include="Component\CollideOperation\CollideAdder.cpp" />
     <ClCompile Include="Component\CollideOperation\AABBMouseScaler.cpp" />
+    <ClCompile Include="Component\CollideOperation\AABBSelector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component\ComponentManager.h" />
@@ -400,5 +401,6 @@
     <ClInclude Include="DebugLayer\PointRenderer.h" />
     <ClInclude Include="Component\CollideOperation\CollideAdder.h" />
     <ClInclude Include="Component\CollideOperation\AABBMouseScaler.h" />
+    <ClInclude Include="Component\CollideOperation\AABBSelector.h" />
   </ItemGroup>
 </Project>

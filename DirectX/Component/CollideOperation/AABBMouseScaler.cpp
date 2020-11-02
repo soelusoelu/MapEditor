@@ -1,7 +1,6 @@
 ﻿#include "AABBMouseScaler.h"
 #include "../Camera/Camera.h"
 #include "../Collider/AABBCollider.h"
-#include "../Mesh/MeshComponent.h"
 #include "../../Collision/Collision.h"
 #include "../../DebugLayer/Debug.h"
 #include "../../Device/Time.h"
@@ -11,13 +10,14 @@
 #include "../../Transform/Transform3D.h"
 #include "../../Utility/LevelLoader.h"
 
-AABBMouseScaler::AABBMouseScaler(GameObject& gameObject) :
-    Component(gameObject),
-    mCamera(nullptr),
-    mCollider(nullptr),
-    mEditPointRadius(0.f),
-    mCollisionExpantionAmount(0.f),
-    mSelectedEditPoint(false) {
+AABBMouseScaler::AABBMouseScaler(GameObject& gameObject)
+    : Component(gameObject)
+    , mCamera(nullptr)
+    , mCollider(nullptr)
+    , mEditPointRadius(0.f)
+    , mCollisionExpantionAmount(0.f)
+    , mSelectedEditPoint(false)
+{
 }
 
 AABBMouseScaler::~AABBMouseScaler() = default;
@@ -56,8 +56,8 @@ void AABBMouseScaler::loadProperties(const rapidjson::Value & inObj) {
     JsonHelper::getFloat(inObj, "collisionExpantionAmount", &mCollisionExpantionAmount);
 }
 
-void AABBMouseScaler::setAABBFromMesh(const MeshComponent& mesh) {
-    mCollider = mesh.getComponent<AABBCollider>();
+void AABBMouseScaler::setAABB(const std::shared_ptr<AABBCollider>& aabb) {
+    mCollider = aabb;
 }
 
 bool AABBMouseScaler::selectBoxPoint() {

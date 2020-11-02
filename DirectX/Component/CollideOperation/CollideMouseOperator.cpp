@@ -1,5 +1,5 @@
 ﻿#include "CollideMouseOperator.h"
-#include "AABBMouseScaler.h"
+#include "AABBSelector.h"
 #include "CollideAdder.h"
 #include "../Camera/Camera.h"
 #include "../Mesh/MeshComponent.h"
@@ -8,12 +8,13 @@
 #include "../../GameObject/GameObjectManager.h"
 #include "../../Input/Input.h"
 
-CollideMouseOperator::CollideMouseOperator(GameObject& gameObject) :
-    Component(gameObject),
-    mCamera(nullptr),
-    mAABBScaler(nullptr),
-    mCollideAdder(nullptr),
-    mSelecteMesh(nullptr) {
+CollideMouseOperator::CollideMouseOperator(GameObject& gameObject)
+    : Component(gameObject)
+    , mCamera(nullptr)
+    , mAABBSelector(nullptr)
+    , mCollideAdder(nullptr)
+    , mSelecteMesh(nullptr)
+{
 }
 
 CollideMouseOperator::~CollideMouseOperator() = default;
@@ -22,7 +23,7 @@ void CollideMouseOperator::start() {
     const auto& gameObjectManager = gameObject().getGameObjectManager();
     mCamera = gameObjectManager.find("Camera")->componentManager().getComponent<Camera>();
 
-    mAABBScaler = getComponent<AABBMouseScaler>();
+    mAABBSelector = getComponent<AABBSelector>();
     mCollideAdder = getComponent<CollideAdder>();
 
     //指定のタグを含んでいるオブジェクトをすべて取得する
@@ -43,16 +44,16 @@ void CollideMouseOperator::update() {
     }
     if (Input::keyboard().getKeyDown(KeyCode::J)) {
         if (mSelecteMesh) {
+            //コライダーを追加する
             mCollideAdder->addAABBCollide(*mSelecteMesh);
+            //コライダーを追加したことを知らせるために
+            mAABBSelector->setAABBsFromMesh(*mSelecteMesh);
         }
     }
 }
 
 void CollideMouseOperator::clickMouseLeftButton() {
-    if (mSelecteMesh) {
-        //メッシュが選択されているなら編集可
-        mAABBScaler->selectBoxPoint();
-    } else {
+    if (!mSelecteMesh) {
         //メッシュが選択されていないならメッシュを選択する
         selectMesh();
     }
@@ -65,7 +66,7 @@ void CollideMouseOperator::selectMesh() {
     }
 
     //メッシュに付随するAABBを送る
-    mAABBScaler->setAABBFromMesh(*mSelecteMesh);
+    mAABBSelector->setAABBsFromMesh(*mSelecteMesh);
 }
 
 bool CollideMouseOperator::intersectRayGroundMeshes(std::shared_ptr<MeshComponent>& out) {

@@ -6,7 +6,6 @@
 #include <utility>
 
 class Camera;
-class MeshComponent;
 class AABBCollider;
 
 //AABBをマウスで拡縮する
@@ -18,8 +17,8 @@ public:
     virtual void update() override;
     virtual void loadProperties(const rapidjson::Value& inObj) override;
 
-    //メッシュからAABBを抜き出す
-    void setAABBFromMesh(const MeshComponent& mesh);
+    //AABBをセットする
+    void setAABB(const std::shared_ptr<AABBCollider>& aabb);
     //AABBのボックスの点を選択する
     bool selectBoxPoint();
 
