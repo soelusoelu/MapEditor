@@ -11,6 +11,7 @@ public:
     virtual void awake() override;
     virtual void lateUpdate() override;
     virtual void loadProperties(const rapidjson::Value& inObj) override;
+    virtual void saveProperties(rapidjson::Document::AllocatorType& alloc, rapidjson::Value* inObj) const override;
     virtual void drawDebugInfo(ComponentDebug::DebugInfoList* inspect) const override;
     const Matrix4& getView() const;
     const Matrix4& getProjection() const;

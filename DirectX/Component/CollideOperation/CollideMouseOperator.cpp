@@ -62,13 +62,13 @@ void CollideMouseOperator::update() {
 }
 
 void CollideMouseOperator::clickMouseLeftButton() {
-    if (!mSelecteMesh) {
-        //メッシュが選択されていないならメッシュを選択する
-        selectMesh();
+    if (mAABBSelector->accessable()) {
+        //最もカメラから近いメッシュを選択する
+        selectNearestMesh();
     }
 }
 
-void CollideMouseOperator::selectMesh() {
+void CollideMouseOperator::selectNearestMesh() {
     //地形とレイが衝突していなかったら終了
     if (!intersectRayGroundMeshes()) {
         return;
@@ -85,6 +85,12 @@ bool CollideMouseOperator::intersectRayGroundMeshes() {
     //すべての地形メッシュとレイの衝突判定
     Vector3 intersectPoint;
     for (const auto& gm : mGroundMeshes) {
+        //今選択しているメッシュなら飛ばす
+        if (gm == mSelecteMesh) {
+            continue;
+        }
+
+        //メッシュとレイの衝突判定
         if (Intersect::intersectRayMesh(rayCameraToMousePos, gm->getMesh(), gm->transform(), intersectPoint)) {
             changeSelectMesh(gm);
             return true;
@@ -97,7 +103,7 @@ bool CollideMouseOperator::intersectRayGroundMeshes() {
 
 void CollideMouseOperator::changeSelectMesh(const std::shared_ptr<MeshComponent>& mesh) {
     //今と同じメッシュなら終了
-    if (mSelecteMesh == mesh) {
+    if (mesh == mSelecteMesh) {
         return;
     }
 
@@ -106,8 +112,10 @@ void CollideMouseOperator::changeSelectMesh(const std::shared_ptr<MeshComponent>
 
     //選択中のメッシュ以外の当たり判定を非表示にする
     for (const auto& gm : mGroundMeshes) {
-        const auto& aabb = gm->getComponent<AABBCollider>();
-        aabb->setRenderCollision(gm == mSelecteMesh);
+        const auto& aabbs = gm->getComponents<AABBCollider>();
+        for (const auto& aabb : aabbs) {
+            aabb->setRenderCollision(gm == mSelecteMesh);
+        }
     }
 }
 

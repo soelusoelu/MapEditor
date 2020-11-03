@@ -24,7 +24,7 @@ private:
     //マウスの左ボタンを押した瞬間の処理
     void clickMouseLeftButton();
     //マウスでメッシュを選択する
-    void selectMesh();
+    void selectNearestMesh();
     //すべての地形メッシュとレイの衝突判定を行う
     bool intersectRayGroundMeshes();
     //選択対象のメッシュを変更する

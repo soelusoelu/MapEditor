@@ -19,13 +19,15 @@ public:
 
     //AABBをセットする
     void setAABB(const std::shared_ptr<AABBCollider>& aabb);
-    //AABBのボックスの点を選択する
-    bool selectBoxPoint();
+    //AABBを編集中か
+    bool editing() const;
 
 private:
     AABBMouseScaler(const AABBMouseScaler&) = delete;
     AABBMouseScaler& operator=(const AABBMouseScaler&) = delete;
 
+    //AABBのボックスの点を選択する
+    void selectBoxPoint();
     //マウスの移動量から当たり判定を拡縮する
     void calculateNewBoxPoint();
     //法線からボックスを更新する

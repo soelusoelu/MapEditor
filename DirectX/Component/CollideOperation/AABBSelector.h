@@ -20,21 +20,20 @@ public:
     virtual void update() override;
     //メッシュからAABBを抜き出す
     void setAABBsFromMesh(const MeshComponent& mesh);
+    //アクセスできる状態か
+    bool accessable() const;
 
 private:
     AABBSelector(const AABBSelector&) = delete;
     AABBSelector& operator=(const AABBSelector&) = delete;
 
     //マウスでAABBを選択する
-    void selectAABB();
+    bool selectAABB();
 
 private:
     std::shared_ptr<Camera> mCamera;
     std::shared_ptr<AABBMouseScaler> mAABBMouseScaler;
     AABBColliderPtrArray mColliders;
-    //今選択しているAABBのインデックス
-    int mSelectAABBIndex;
-
-    //無効なインデックス値として
-    static constexpr int INVALID_INDEX = -1;
+    //このクラスにアクセスしてもいい状態か
+    bool mCanAccess;
 };

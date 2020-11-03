@@ -31,6 +31,11 @@ void AABBMouseScaler::update() {
     //マウスインターフェイスを取得
     const auto& mouse = Input::mouse();
 
+    //マウスの左ボタンを押した瞬間だったら
+    if (Input::mouse().getMouseButtonDown(MouseCode::LeftButton)) {
+        //編集点を選択する
+        selectBoxPoint();
+    }
     //マウスの左ボタンを押し続けていたら
     if (mouse.getMouseButton(MouseCode::LeftButton)) {
         //編集ポイントを選択していたら
@@ -60,10 +65,13 @@ void AABBMouseScaler::setAABB(const std::shared_ptr<AABBCollider>& aabb) {
     mCollider = aabb;
 }
 
-bool AABBMouseScaler::selectBoxPoint() {
+bool AABBMouseScaler::editing() const {
+    return mSelectedEditPoint;
+}
+
+void AABBMouseScaler::selectBoxPoint() {
     if (!mCollider) {
-        Debug::logError("Collider is null.");
-        return false;
+        return;
     }
 
     //AABBすべての面と法線を取得する
@@ -76,11 +84,9 @@ bool AABBMouseScaler::selectBoxPoint() {
         if (Intersect::intersectRaySphere(cameraToMousePos, { surface.first, mEditPointRadius }, intersectPoint)) {
             mSelectSurface = surface;
             mSelectedEditPoint = true;
-            return true;
+            return;
         }
     }
-
-    return false;
 }
 
 void AABBMouseScaler::calculateNewBoxPoint() {
