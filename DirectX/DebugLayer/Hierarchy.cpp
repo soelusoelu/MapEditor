@@ -1,6 +1,7 @@
 ﻿#include "Hierarchy.h"
 #include "Button.h"
 #include "../DebugLayer/DebugUtility.h"
+#include "../DebugLayer/ImGuiInspector.h"
 #include "../DebugLayer/Inspector.h"
 #include "../Device/DrawString.h"
 #include "../GameObject/GameObject.h"

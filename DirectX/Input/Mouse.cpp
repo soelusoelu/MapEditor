@@ -36,7 +36,7 @@ Vector2 Mouse::getMouseMoveAmount() const {
     return mCurrentMousePosition - mPreviousMousePosition;
 }
 
-bool Mouse::initialize(HWND hWnd, IDirectInput8* directInput) {
+bool Mouse::initialize(const HWND& hWnd, IDirectInput8* directInput) {
     mhWnd = hWnd;
 
     //「DirectInputデバイス」オブジェクトの作成

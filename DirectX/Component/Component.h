@@ -14,11 +14,6 @@ class GameObject;
 class Transform3D;
 class ComponentManager;
 
-namespace ComponentDebug {
-    using DebugInfo = std::pair<std::string, std::any>;
-    using DebugInfoList = std::list<DebugInfo>;
-}
-
 class Component : public Object {
 public:
     Component() = delete;
@@ -42,9 +37,7 @@ public:
     virtual void loadProperties(const rapidjson::Value& inObj) {};
     virtual void saveProperties(rapidjson::Document::AllocatorType& alloc, rapidjson::Value* inObj) const {};
     //Inspectorに表示する情報
-    //first: 変数名
-    //second: 値
-    virtual void drawDebugInfo(ComponentDebug::DebugInfoList* inspect) const {};
+    virtual void drawInspector() {};
 
     //コンポーネントがアタッチされているゲームオブジェクトを返す
     GameObject& gameObject() const;

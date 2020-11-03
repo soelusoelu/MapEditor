@@ -13,7 +13,8 @@ public:
     ~CircleCollider();
     virtual void start() override;
     virtual void update() override;
-    virtual void drawDebugInfo(ComponentDebug::DebugInfoList* inspect) const override;
+    virtual void drawInspector() override;
+
     void set(const Vector2& center, float radius);
     const Circle& getCircle() const;
 

@@ -3,6 +3,7 @@
 #include "../Light/DirectionalLight.h"
 #include "../../DebugLayer/Debug.h"
 #include "../../GameObject/GameObject.h"
+#include "../../Imgui/imgui.h"
 #include "../../Mesh/Mesh.h"
 #include "../../Mesh/MeshManager.h"
 #include "../../System/AssetsManager.h"
@@ -68,9 +69,9 @@ void MeshComponent::saveProperties(rapidjson::Document::AllocatorType& alloc, ra
     JsonHelper::setFloat(alloc, inObj, "alpha", mAlpha);
 }
 
-void MeshComponent::drawDebugInfo(ComponentDebug::DebugInfoList* inspect) const {
-    inspect->emplace_back("FileName", mDirectoryPath + mFileName);
-    inspect->emplace_back("Alpha", mAlpha);
+void MeshComponent::drawInspector() {
+    ImGui::Text("FileName: %s", (mDirectoryPath + mFileName).c_str());
+    ImGui::SliderFloat("Alpha", &mAlpha, 0.f, 1.f);
 }
 
 void MeshComponent::draw(const Camera& camera, const DirectionalLight& dirLight) const {

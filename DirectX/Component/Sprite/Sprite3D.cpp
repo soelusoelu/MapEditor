@@ -2,6 +2,7 @@
 #include "../../DebugLayer/Debug.h"
 #include "../../DirectX/DirectX.h"
 #include "../../GameObject/GameObject.h"
+#include "../../Imgui/imgui.h"
 #include "../../Sprite/SpriteManager.h"
 #include "../../System/AssetsManager.h"
 #include "../../System/Window.h"
@@ -88,11 +89,11 @@ void Sprite3D::loadProperties(const rapidjson::Value& inObj) {
     JsonHelper::getVector4(inObj, "uv", &mUV);
 }
 
-void Sprite3D::drawDebugInfo(ComponentDebug::DebugInfoList* inspect) const {
-    inspect->emplace_back("FileName", mFileName);
-    inspect->emplace_back("Position", mTransform->getPosition());
-    inspect->emplace_back("Rotation", mTransform->getRotation().euler());
-    inspect->emplace_back("Scale", mTransform->getScale());
+void Sprite3D::drawInspector() {
+    ImGui::Text("FileName: %s", mFileName.c_str());
+    //inspect->emplace_back("Position", mTransform->getPosition());
+    //inspect->emplace_back("Rotation", mTransform->getRotation().euler());
+    //inspect->emplace_back("Scale", mTransform->getScale());
 }
 
 void Sprite3D::draw(const Matrix4& viewProj) const {

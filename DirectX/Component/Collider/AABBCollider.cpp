@@ -1,6 +1,7 @@
 ﻿#include "AABBCollider.h"
 #include "../Mesh/MeshComponent.h"
 #include "../../DebugLayer/Debug.h"
+#include "../../Imgui/imgui.h"
 #include "../../Transform/Transform3D.h"
 #include "../../Utility/LevelLoader.h"
 
@@ -71,11 +72,16 @@ void AABBCollider::saveProperties(rapidjson::Document::AllocatorType& alloc, rap
     JsonHelper::setBool(alloc, inObj, "isRenderCollision", mIsRenderCollision);
 }
 
-void AABBCollider::drawDebugInfo(ComponentDebug::DebugInfoList* inspect) const {
-    Collider::drawDebugInfo(inspect);
+void AABBCollider::drawInspector() {
+    Collider::drawInspector();
 
-    inspect->emplace_back("Min", mAABB.min);
-    inspect->emplace_back("Max", mAABB.max);
+    auto& min = mAABB.min;
+    float mi[3] = { min.x, min.y, min.z };
+    ImGui::SliderFloat3("Min", mi, -10000.f, 10000.f);
+    auto& max = mAABB.max;
+    float ma[3] = { max.x, max.y, max.z };
+    ImGui::SliderFloat3("Max", ma, -10000.f, 10000.f);
+    ImGui::Checkbox("IsRenderCollision", &mIsRenderCollision);
 }
 
 void AABBCollider::set(const Vector3& min, const Vector3& max) {

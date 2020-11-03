@@ -15,7 +15,7 @@ public:
     virtual const Vector2& getMousePosition() const override;
     virtual Vector2 getMouseMoveAmount() const override;
 
-    bool initialize(HWND hWnd, IDirectInput8* directInput);
+    bool initialize(const HWND& hWnd, IDirectInput8* directInput);
     void update();
     //文字列をMouseCodeに変換
     static void stringToJoyCode(const std::string& src, MouseCode* dst);

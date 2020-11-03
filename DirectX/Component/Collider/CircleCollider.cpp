@@ -1,5 +1,6 @@
 ﻿#include "CircleCollider.h"
 #include "../Sprite/SpriteComponent.h"
+#include "../../Imgui/imgui.h"
 #include "../../Transform/Transform2D.h"
 
 CircleCollider::CircleCollider(GameObject& gameObject) :
@@ -27,11 +28,13 @@ void CircleCollider::update() {
     circleUpdate();
 }
 
-void CircleCollider::drawDebugInfo(ComponentDebug::DebugInfoList* inspect) const {
-    Collider::drawDebugInfo(inspect);
+void CircleCollider::drawInspector() {
+    Collider::drawInspector();
 
-    inspect->emplace_back("Center", mCircle.center);
-    inspect->emplace_back("Radius", mCircle.radius);
+    auto& center = mCircle.center;
+    float c[2] = { center.x, center.y };
+    ImGui::SliderFloat2("Center", c, FLT_MIN, FLT_MAX);
+    ImGui::SliderFloat("Radius", &mCircle.radius, FLT_MIN, FLT_MAX);
 }
 
 void CircleCollider::set(const Vector2& center, float radius) {

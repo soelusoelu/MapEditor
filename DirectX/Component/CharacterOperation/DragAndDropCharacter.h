@@ -17,7 +17,7 @@ public:
     ~DragAndDropCharacter();
     virtual void start() override;
     virtual void update() override;
-    virtual void drawDebugInfo(ComponentDebug::DebugInfoList* inspect) const override;
+    virtual void drawInspector() override;
 
 private:
     DragAndDropCharacter(const DragAndDropCharacter&) = delete;

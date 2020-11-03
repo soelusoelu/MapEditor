@@ -1,12 +1,13 @@
 ﻿#include "DebugUtility.h"
 #include "FixedDebugInformation.h"
 #include "Hierarchy.h"
+#include "ImGuiInspector.h"
 #include "Inspector.h"
-#include "LineRenderer/LineRenderer2D.h"
-#include "LineRenderer/LineRenderer3D.h"
 #include "Log.h"
 #include "Pause.h"
 #include "PointRenderer.h"
+#include "LineRenderer/LineRenderer2D.h"
+#include "LineRenderer/LineRenderer3D.h"
 #include "../Device/DrawString.h"
 #include "../System/GlobalFunction.h"
 #include "../System/SystemInclude.h"
@@ -16,7 +17,8 @@ void DebugUtility::create() {
     mLog = new Log();
     mFixedDebugInfo = new FixedDebugInformation(mDrawString);
     mHierarchy = new Hierarchy(mDrawString);
-    mInspector = new Inspector(mDrawString);
+    //mInspector = new Inspector(mDrawString);
+    mInspector = new ImGuiInspector();
     mPause = new Pause();
     mPointRenderer = new PointRenderer();
     mLineRenderer2D = new LineRenderer2D();
@@ -37,7 +39,6 @@ void DebugUtility::initialize() {
     mLog->initialize();
     mFixedDebugInfo->initialize();
     mHierarchy->initialize();
-    mInspector->initialize();
     mPause->initialize();
     mPointRenderer->initialize();
     mLineRenderer2D->initialize();
@@ -90,7 +91,11 @@ Hierarchy& DebugUtility::hierarchy() {
     return *mHierarchy;
 }
 
-Inspector& DebugUtility::inspector() {
+//Inspector& DebugUtility::inspector() {
+//    return *mInspector;
+//}
+
+ImGuiInspector& DebugUtility::inspector() {
     return *mInspector;
 }
 

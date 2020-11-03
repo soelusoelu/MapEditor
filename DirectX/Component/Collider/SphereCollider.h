@@ -12,7 +12,8 @@ public:
     ~SphereCollider();
     virtual void start() override;
     virtual void onUpdateWorldTransform() override;
-    virtual void drawDebugInfo(ComponentDebug::DebugInfoList* inspect) const override;
+    virtual void drawInspector() override;
+
     //中心位置と半径を直接設定する
     void set(const Vector3& center, float radius);
     //球を取得する

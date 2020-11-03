@@ -1,4 +1,5 @@
 ﻿#include "Camera.h"
+#include "../../Imgui/imgui.h"
 #include "../../System/Window.h"
 #include "../../Transform/Transform3D.h"
 #include "../../Utility/LevelLoader.h"
@@ -36,10 +37,10 @@ void Camera::saveProperties(rapidjson::Document::AllocatorType& alloc, rapidjson
     JsonHelper::setFloat(alloc, inObj, "farClip", mFarClip);
 }
 
-void Camera::drawDebugInfo(ComponentDebug::DebugInfoList* inspect) const {
-    inspect->emplace_back("FOV", mFOV);
-    inspect->emplace_back("NearClip", mNearClip);
-    inspect->emplace_back("FarClip", mFarClip);
+void Camera::drawInspector() {
+    ImGui::SliderFloat("FOV", &mFOV, 45.f, 120.f);
+    ImGui::SliderFloat("NearClip", &mNearClip, 0.001f, 1.f);
+    ImGui::SliderFloat("FarClip", &mFarClip, 100.f, 1000.f);
 }
 
 const Matrix4& Camera::getView() const {

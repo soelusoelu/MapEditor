@@ -140,21 +140,21 @@ void Inspector::drawComponent(const Component& component, Vector2 * position) co
     mDrawString->drawString(component.getComponentName(), pos, mElementScale);
 
     //コンポーネントのデバッグ情報を取得
-    ComponentDebug::DebugInfoList debugInfo;
-    component.drawDebugInfo(&debugInfo);
+    //ComponentDebug::DebugInfoList debugInfo;
+    //component.drawDebugInfo(&debugInfo);
 
-    //すべてのデバッグ情報を描画
-    for (const auto& info : debugInfo) {
-        pos.x = mElementPositionX;
-        auto ele = info.first;
-        if (ele.length() > mMaxElementCharCount) {
-            ele = ele.substr(0, mMaxElementCharCount);
-        }
-        pos.y += mCharHeight;
-        mDrawString->drawString(ele, pos, mElementScale);
-        pos.x = mValuePositionX;
-        mDrawString->drawString(anyToString(info.second), pos, mElementScale);
-    }
+    ////すべてのデバッグ情報を描画
+    //for (const auto& info : debugInfo) {
+    //    pos.x = mElementPositionX;
+    //    auto ele = info.first;
+    //    if (ele.length() > mMaxElementCharCount) {
+    //        ele = ele.substr(0, mMaxElementCharCount);
+    //    }
+    //    pos.y += mCharHeight;
+    //    mDrawString->drawString(ele, pos, mElementScale);
+    //    pos.x = mValuePositionX;
+    //    mDrawString->drawString(anyToString(info.second), pos, mElementScale);
+    //}
 
     *position = pos;
 }

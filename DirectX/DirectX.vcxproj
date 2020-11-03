@@ -181,6 +181,13 @@
     <ClCompile Include="Component\CharacterOperation\DragAndDropCharacter.cpp" />
     <ClCompile Include="Collision\Square.cpp" />
     <ClCompile Include="Component\CollideOperation\MeshAdder.cpp" />
+    <ClCompile Include="DebugLayer\ImGuiInspector.cpp" />
+    <ClCompile Include="Imgui\imgui.cpp" />
+    <ClCompile Include="Imgui\imgui_demo.cpp" />
+    <ClCompile Include="Imgui\imgui_draw.cpp" />
+    <ClCompile Include="Imgui\imgui_impl_dx11.cpp" />
+    <ClCompile Include="Imgui\imgui_impl_win32.cpp" />
+    <ClCompile Include="Imgui\imgui_widgets.cpp" />
     <ClCompile Include="Mesh\Fbx\FbxAnimationTime.cpp" />
     <ClCompile Include="Mesh\Fbx\FbxBoneParser.cpp" />
     <ClCompile Include="Mesh\Fbx\FbxMeshParser.cpp" />
@@ -215,7 +222,6 @@
     <ClCompile Include="Component\Collider\CircleCollider.cpp" />
     <ClCompile Include="Component\Scene\Scene.cpp" />
     <ClCompile Include="DebugLayer\Button.cpp" />
-    <ClCompile Include="Component\Other\Fade.cpp" />
     <ClCompile Include="Component\Text\Text.cpp" />
     <ClCompile Include="DebugLayer\DebugUtility.cpp" />
     <ClCompile Include="Device\Flag.cpp" />
@@ -350,6 +356,15 @@
     <ClInclude Include="Collision\Circle.h" />
     <ClInclude Include="Component\CharacterOperation\DragAndDropCharacter.h" />
     <ClInclude Include="Component\CollideOperation\MeshAdder.h" />
+    <ClInclude Include="DebugLayer\ImGuiInspector.h" />
+    <ClInclude Include="Imgui\imconfig.h" />
+    <ClInclude Include="Imgui\imgui.h" />
+    <ClInclude Include="Imgui\imgui_impl_dx11.h" />
+    <ClInclude Include="Imgui\imgui_impl_win32.h" />
+    <ClInclude Include="Imgui\imgui_internal.h" />
+    <ClInclude Include="Imgui\imstb_rectpack.h" />
+    <ClInclude Include="Imgui\imstb_textedit.h" />
+    <ClInclude Include="Imgui\imstb_truetype.h" />
     <ClInclude Include="Mesh\Bone.h" />
     <ClInclude Include="Mesh\Fbx\FbxAnimationTime.h" />
     <ClInclude Include="Mesh\Fbx\FbxBoneParser.h" />
@@ -398,7 +413,6 @@
     <ClInclude Include="Component\Collider\CircleCollider.h" />
     <ClInclude Include="Component\Scene\Scene.h" />
     <ClInclude Include="DebugLayer\Button.h" />
-    <ClInclude Include="Component\Other\Fade.h" />
     <ClInclude Include="Component\Text\Text.h" />
     <ClInclude Include="DebugLayer\DebugUtility.h" />
     <ClInclude Include="DebugLayer\IButton.h" />

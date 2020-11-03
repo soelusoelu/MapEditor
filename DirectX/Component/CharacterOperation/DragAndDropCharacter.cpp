@@ -4,6 +4,7 @@
 #include "../Mesh/MeshComponent.h"
 #include "../../GameObject/GameObject.h"
 #include "../../GameObject/GameObjectManager.h"
+#include "../../Imgui/imgui.h"
 #include "../../Input/Input.h"
 #include "../../Transform/Transform3D.h"
 #include "../../System/Window.h"
@@ -66,8 +67,8 @@ void DragAndDropCharacter::update() {
     moveToIntersectPoint();
 }
 
-void DragAndDropCharacter::drawDebugInfo(ComponentDebug::DebugInfoList* inspect) const {
-    inspect->emplace_back("SelectedMesh", mSelectedMesh);
+void DragAndDropCharacter::drawInspector() {
+    ImGui::Checkbox("SelectedMesh", &mSelectedMesh);
 }
 
 Ray DragAndDropCharacter::getRayCamraToMousePos(const Vector2& mousePos) const {

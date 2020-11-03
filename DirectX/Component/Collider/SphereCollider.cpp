@@ -1,5 +1,6 @@
 ﻿#include "SphereCollider.h"
 #include "../Mesh/MeshComponent.h"
+#include "../../Imgui/imgui.h"
 #include "../../Transform/Transform3D.h"
 
 SphereCollider::SphereCollider(GameObject& gameObject) :
@@ -38,11 +39,13 @@ void SphereCollider::onUpdateWorldTransform() {
     mSphere.radius = radius;
 }
 
-void SphereCollider::drawDebugInfo(ComponentDebug::DebugInfoList* inspect) const {
-    Collider::drawDebugInfo(inspect);
+void SphereCollider::drawInspector() {
+    Collider::drawInspector();
 
-    inspect->emplace_back("Center", mSphere.center);
-    inspect->emplace_back("Radius", mSphere.radius);
+    auto& center = mSphere.center;
+    float c[3] = { center.x, center.y, center.z };
+    ImGui::SliderFloat3("Center", c, FLT_MIN, FLT_MAX);
+    ImGui::SliderFloat("Radius", &mSphere.radius, FLT_MIN, FLT_MAX);
 }
 
 void SphereCollider::set(const Vector3& center, float radius) {

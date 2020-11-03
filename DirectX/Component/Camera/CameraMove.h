@@ -13,6 +13,8 @@ public:
     virtual void start() override;
     virtual void update() override;
     virtual void loadProperties(const rapidjson::Value& inObj) override;
+    virtual void saveProperties(rapidjson::Document::AllocatorType& alloc, rapidjson::Value* inObj) const override;
+    virtual void drawInspector() override;
 
 private:
     CameraMove(const CameraMove&) = delete;

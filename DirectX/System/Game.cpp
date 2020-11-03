@@ -9,6 +9,9 @@
 #include "../Device/FPSCounter.h"
 #include "../DirectX/DirectX.h"
 #include "../GameObject/GameObjectFactory.h"
+#include "../Imgui/imgui.h"
+#include "../Imgui/imgui_impl_dx11.h"
+#include "../Imgui/imgui_impl_win32.h"
 #include "../Input/InputUtility.h"
 #include "../Sound/XAudio2/SoundEngine.h"
 #include "../Utility/LevelLoader.h"
@@ -18,12 +21,16 @@ Game::Game() :
     mWindow(nullptr),
     mFPSCounter(nullptr),
     mSceneManager(nullptr),
-    mInstance(nullptr),
-    mhWnd(nullptr) {
+    mInstance(nullptr) {
 }
 
 Game::~Game() {
     safeDelete(mSceneManager);
+
+    //imguiの終了処理
+    ImGui_ImplDX11_Shutdown();
+    ImGui_ImplWin32_Shutdown();
+    ImGui::DestroyContext();
 
     Shader::finalize();
     Texture::finalize();
@@ -75,18 +82,28 @@ void Game::initialize() {
     LevelLoader::loadGlobal(this, "Assets\\Data\\Global.json");
 
     mWindow->createWindow(mInstance);
-    mhWnd = mWindow->gethWnd();
+    const auto& hwnd = mWindow->gethWnd();
 
-    MyDirectX::DirectX::instance().initialize(mhWnd);
+    MyDirectX::DirectX::instance().initialize(hwnd);
+
+    //imguiの初期化
+    ImGui::CreateContext();
+    ImGui_ImplWin32_Init(hwnd);
+    ImGui_ImplDX11_Init(MyDirectX::DirectX::instance().device(), MyDirectX::DirectX::instance().deviceContext());
 
     Random::initialize();
     DebugUtility::initialize();
-    InputUtility::initialize(mhWnd);
+    InputUtility::initialize(hwnd);
     GameObjectCreater::initialize();
     mSceneManager->initialize();
 }
 
 void Game::mainLoop() {
+    //imguiの描画前準備
+    ImGui_ImplDX11_NewFrame();
+    ImGui_ImplWin32_NewFrame();
+    ImGui::NewFrame();
+
     auto& dx = MyDirectX::DirectX::instance();
     dx.clearRenderTarget();
     dx.clearDepthStencilView();
@@ -96,6 +113,10 @@ void Game::mainLoop() {
 
     mSceneManager->update();
     mSceneManager->draw();
+
+    //imguiの描画
+    ImGui::Render();
+    ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 
     mFPSCounter->fixedFrame();
     dx.present();

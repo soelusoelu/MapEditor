@@ -6,6 +6,7 @@
 #include "../../Device/Time.h"
 #include "../../GameObject/GameObject.h"
 #include "../../GameObject/GameObjectManager.h"
+#include "../../Imgui/imgui.h"
 #include "../../Input/Input.h"
 #include "../../Transform/Transform3D.h"
 #include "../../Utility/LevelLoader.h"
@@ -59,6 +60,16 @@ void AABBMouseScaler::update() {
 void AABBMouseScaler::loadProperties(const rapidjson::Value & inObj) {
     JsonHelper::getFloat(inObj, "editPointRadius", &mEditPointRadius);
     JsonHelper::getFloat(inObj, "collisionExpantionAmount", &mCollisionExpantionAmount);
+}
+
+void AABBMouseScaler::saveProperties(rapidjson::Document::AllocatorType& alloc, rapidjson::Value* inObj) const {
+    JsonHelper::setFloat(alloc, inObj, "editPointRadius", mEditPointRadius);
+    JsonHelper::setFloat(alloc, inObj, "collisionExpantionAmount", mCollisionExpantionAmount);
+}
+
+void AABBMouseScaler::drawInspector() {
+    ImGui::SliderFloat("EditPointRadius", &mEditPointRadius, 0.1f, 3.f);
+    ImGui::SliderFloat("CollisionExpantionAmount", &mCollisionExpantionAmount, 0.1f, 10.f);
 }
 
 void AABBMouseScaler::setAABB(const std::shared_ptr<AABBCollider>& aabb) {

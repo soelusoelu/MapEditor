@@ -91,7 +91,6 @@
     <ClCompile Include="Component\Sprite\SpriteComponent.cpp" />
     <ClCompile Include="Component\Mesh\MeshComponent.cpp" />
     <ClCompile Include="Component\Camera\Camera.cpp" />
-    <ClCompile Include="Component\Other\Fade.cpp" />
     <ClCompile Include="Component\Other\HitPointComponent.cpp" />
     <ClCompile Include="Component\Collider\CircleCollider.cpp" />
     <ClCompile Include="Component\Collider\SphereCollider.cpp" />
@@ -186,6 +185,13 @@
     <ClCompile Include="Component\CollideOperation\AABBMouseScaler.cpp" />
     <ClCompile Include="Component\CollideOperation\AABBSelector.cpp" />
     <ClCompile Include="Component\CollideOperation\MeshAdder.cpp" />
+    <ClCompile Include="Imgui\imgui.cpp" />
+    <ClCompile Include="Imgui\imgui_demo.cpp" />
+    <ClCompile Include="Imgui\imgui_draw.cpp" />
+    <ClCompile Include="Imgui\imgui_impl_dx11.cpp" />
+    <ClCompile Include="Imgui\imgui_impl_win32.cpp" />
+    <ClCompile Include="Imgui\imgui_widgets.cpp" />
+    <ClCompile Include="DebugLayer\ImGuiInspector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component\ComponentManager.h" />
@@ -281,7 +287,6 @@
     <ClInclude Include="Component\Mesh\MeshComponent.h" />
     <ClInclude Include="Component\Camera\Camera.h" />
     <ClInclude Include="Component\Other\HitPointComponent.h" />
-    <ClInclude Include="Component\Other\Fade.h" />
     <ClInclude Include="Component\Collider\CircleCollider.h" />
     <ClInclude Include="Component\Collider\SphereCollider.h" />
     <ClInclude Include="Component\Sound\SoundComponent.h" />
@@ -404,5 +409,14 @@
     <ClInclude Include="Component\CollideOperation\AABBMouseScaler.h" />
     <ClInclude Include="Component\CollideOperation\AABBSelector.h" />
     <ClInclude Include="Component\CollideOperation\MeshAdder.h" />
+    <ClInclude Include="Imgui\imconfig.h" />
+    <ClInclude Include="Imgui\imgui.h" />
+    <ClInclude Include="Imgui\imgui_impl_dx11.h" />
+    <ClInclude Include="Imgui\imgui_impl_win32.h" />
+    <ClInclude Include="Imgui\imgui_internal.h" />
+    <ClInclude Include="Imgui\imstb_rectpack.h" />
+    <ClInclude Include="Imgui\imstb_textedit.h" />
+    <ClInclude Include="Imgui\imstb_truetype.h" />
+    <ClInclude Include="DebugLayer\ImGuiInspector.h" />
   </ItemGroup>
 </Project>

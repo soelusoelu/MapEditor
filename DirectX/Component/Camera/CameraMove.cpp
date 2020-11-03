@@ -1,6 +1,7 @@
 ﻿#include "CameraMove.h"
 #include "Camera.h"
 #include "../../Device/Time.h"
+#include "../../Imgui/imgui.h"
 #include "../../Input/Input.h"
 #include "../../Transform/Transform3D.h"
 #include "../../Utility/LevelLoader.h"
@@ -50,4 +51,14 @@ void CameraMove::update() {
 void CameraMove::loadProperties(const rapidjson::Value& inObj) {
     JsonHelper::getFloat(inObj, "cameraSpeed", &mCameraSpeed);
     JsonHelper::getFloat(inObj, "rotateSpeed", &mRotateSpeed);
+}
+
+void CameraMove::saveProperties(rapidjson::Document::AllocatorType& alloc, rapidjson::Value* inObj) const {
+    JsonHelper::setFloat(alloc, inObj, "cameraSpeed", mCameraSpeed);
+    JsonHelper::setFloat(alloc, inObj, "rotateSpeed", mRotateSpeed);
+}
+
+void CameraMove::drawInspector() {
+    ImGui::SliderFloat("CameraSpeed", &mCameraSpeed, 10.f, 60.f);
+    ImGui::SliderFloat("RotateSpeed", &mRotateSpeed, 10.f, 60.f);
 }
