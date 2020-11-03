@@ -3,6 +3,7 @@
 #include "CollideAdder.h"
 #include "MeshAdder.h"
 #include "../Camera/Camera.h"
+#include "../Collider/AABBCollider.h"
 #include "../Mesh/MeshComponent.h"
 #include "../../Collision/Collision.h"
 #include "../../GameObject/GameObject.h"
@@ -30,7 +31,7 @@ void CollideMouseOperator::start() {
     mCollideAdder = getComponent<CollideAdder>();
 
     //指定のタグを含んでいるオブジェクトをすべて取得する
-    const auto& grounds = gameObjectManager.findGameObjects("Ground");
+    const auto& grounds = gameObjectManager.findGameObjects(GROUND_TAG);
     //取得したオブジェクトからメッシュを取得する
     for (const auto& g : grounds) {
         auto mesh = g->componentManager().getComponent<MeshComponent>();
@@ -56,12 +57,7 @@ void CollideMouseOperator::update() {
 
     //マウスの右ボタンを押した瞬間だったら
     if (Input::mouse().getMouseButtonDown(MouseCode::RightButton)) {
-        if (mSelecteMesh) {
-            //選択してるメッシュに新たにメッシュを追加する
-            auto newMesh = mMeshAdder->addMesh(mSelecteMesh->gameObject());
-            //新しいメッシュにコライダーを追加する
-            addCollider(*newMesh);
-        }
+        addMesh();
     }
 }
 
@@ -74,7 +70,7 @@ void CollideMouseOperator::clickMouseLeftButton() {
 
 void CollideMouseOperator::selectMesh() {
     //地形とレイが衝突していなかったら終了
-    if (!intersectRayGroundMeshes(mSelecteMesh)) {
+    if (!intersectRayGroundMeshes()) {
         return;
     }
 
@@ -82,7 +78,7 @@ void CollideMouseOperator::selectMesh() {
     mAABBSelector->setAABBsFromMesh(*mSelecteMesh);
 }
 
-bool CollideMouseOperator::intersectRayGroundMeshes(std::shared_ptr<MeshComponent>& out) {
+bool CollideMouseOperator::intersectRayGroundMeshes() {
     //カメラからマウスの位置へ向かうレイを取得
     auto rayCameraToMousePos = mCamera->screenToRay(Input::mouse().getMousePosition());
 
@@ -90,14 +86,46 @@ bool CollideMouseOperator::intersectRayGroundMeshes(std::shared_ptr<MeshComponen
     Vector3 intersectPoint;
     for (const auto& gm : mGroundMeshes) {
         if (Intersect::intersectRayMesh(rayCameraToMousePos, gm->getMesh(), gm->transform(), intersectPoint)) {
-            out = gm;
+            changeSelectMesh(gm);
             return true;
         }
     }
 
     //どれとも衝突しなかった
-    out = nullptr;
     return false;
+}
+
+void CollideMouseOperator::changeSelectMesh(const std::shared_ptr<MeshComponent>& mesh) {
+    //今と同じメッシュなら終了
+    if (mSelecteMesh == mesh) {
+        return;
+    }
+
+    //選択対象を変更する
+    mSelecteMesh = mesh;
+
+    //選択中のメッシュ以外の当たり判定を非表示にする
+    for (const auto& gm : mGroundMeshes) {
+        const auto& aabb = gm->getComponent<AABBCollider>();
+        aabb->setRenderCollision(gm == mSelecteMesh);
+    }
+}
+
+void CollideMouseOperator::addMesh() {
+    //新たにメッシュを追加する
+    auto newMesh = mMeshAdder->addMeshCreateGameObject(GROUND_TAG);
+
+    //生成に失敗したいたら終了
+    if (!newMesh) {
+        return;
+    }
+
+    //メッシュにコライダーを追加する
+    addCollider(*newMesh);
+    //このメッシュを選択対象にする
+    changeSelectMesh(newMesh);
+    //地形配列に追加する
+    mGroundMeshes.emplace_back(newMesh);
 }
 
 void CollideMouseOperator::addCollider(MeshComponent& mesh) {

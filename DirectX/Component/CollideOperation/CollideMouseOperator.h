@@ -26,7 +26,11 @@ private:
     //マウスでメッシュを選択する
     void selectMesh();
     //すべての地形メッシュとレイの衝突判定を行う
-    bool intersectRayGroundMeshes(std::shared_ptr<MeshComponent>& out);
+    bool intersectRayGroundMeshes();
+    //選択対象のメッシュを変更する
+    void changeSelectMesh(const std::shared_ptr<MeshComponent>& mesh);
+    //ファイルからメッシュを追加する
+    void addMesh();
     //メッシュにコライダーを追加する
     void addCollider(MeshComponent& mesh);
 
@@ -40,4 +44,6 @@ private:
     std::vector<std::shared_ptr<MeshComponent>> mGroundMeshes;
     //メッシュが選択されているか
     std::shared_ptr<MeshComponent> mSelecteMesh;
+
+    static constexpr const char* GROUND_TAG = "Ground";
 };
