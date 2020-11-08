@@ -182,6 +182,7 @@
     <ClCompile Include="Collision\Square.cpp" />
     <ClCompile Include="Component\CollideOperation\MeshAdder.cpp" />
     <ClCompile Include="DebugLayer\ImGuiInspector.cpp" />
+    <ClCompile Include="DebugLayer\ImGuiWrapper.cpp" />
     <ClCompile Include="Imgui\imgui.cpp" />
     <ClCompile Include="Imgui\imgui_demo.cpp" />
     <ClCompile Include="Imgui\imgui_draw.cpp" />
@@ -357,6 +358,7 @@
     <ClInclude Include="Component\CharacterOperation\DragAndDropCharacter.h" />
     <ClInclude Include="Component\CollideOperation\MeshAdder.h" />
     <ClInclude Include="DebugLayer\ImGuiInspector.h" />
+    <ClInclude Include="DebugLayer\ImGuiWrapper.h" />
     <ClInclude Include="Imgui\imconfig.h" />
     <ClInclude Include="Imgui\imgui.h" />
     <ClInclude Include="Imgui\imgui_impl_dx11.h" />

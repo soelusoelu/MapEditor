@@ -192,6 +192,7 @@
     <ClCompile Include="Imgui\imgui_impl_win32.cpp" />
     <ClCompile Include="Imgui\imgui_widgets.cpp" />
     <ClCompile Include="DebugLayer\ImGuiInspector.cpp" />
+    <ClCompile Include="DebugLayer\ImGuiWrapper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component\ComponentManager.h" />
@@ -418,5 +419,6 @@
     <ClInclude Include="Imgui\imstb_textedit.h" />
     <ClInclude Include="Imgui\imstb_truetype.h" />
     <ClInclude Include="DebugLayer\ImGuiInspector.h" />
+    <ClInclude Include="DebugLayer\ImGuiWrapper.h" />
   </ItemGroup>
 </Project>

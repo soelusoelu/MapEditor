@@ -1,4 +1,5 @@
 ﻿#include "Transform3D.h"
+#include "../DebugLayer/ImGuiWrapper.h"
 #include "../GameObject/GameObject.h"
 #include "../Imgui/imgui.h"
 #include "../Utility/LevelLoader.h"
@@ -211,21 +212,14 @@ void Transform3D::saveProperties(rapidjson::Document::AllocatorType& alloc, rapi
 void Transform3D::drawInspector() {
     ImGui::Text("Transform");
 
-    float pos[3] = { mPosition.x, mPosition.y, mPosition.z };
-    if (ImGui::DragFloat3("Position", pos, 0.01f)) {
-        memcpy_s(&mPosition, sizeof(mPosition), pos, sizeof(pos));
+    ImGuiWrapper::dragVector3("Position", mPosition, 0.01f);
+
+    auto euler = mRotation.euler();
+    if (ImGuiWrapper::dragVector3("Rotation", euler, 0.1f)) {
+        mRotation.setEuler(euler);
     }
 
-    const auto& euler = mRotation.euler();
-    float r[3] = { euler.x, euler.y, euler.z };
-    if (ImGui::DragFloat3("Rotation", r, 0.1f)) {
-        mRotation.setEuler(Vector3(r[0], r[1], r[2]));
-    }
-
-    float s[3] = { mScale.x, mScale.y, mScale.z };
-    if (ImGui::DragFloat3("Scale", s, 0.01f)) {
-        memcpy_s(&mScale, sizeof(mScale), s, sizeof(s));
-    }
+    ImGuiWrapper::dragVector3("Scale", mScale, 0.01f);
 }
 
 void Transform3D::setParent(const std::shared_ptr<Transform3D>& parent) {

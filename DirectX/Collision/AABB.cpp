@@ -34,14 +34,13 @@ void AABB::rotate(const Quaternion& q) {
     points[6] = Vector3(max.x, max.y, min.z);
     points[7] = max;
 
-    //最初に最小の点を回転させる
-    auto p = Vector3::transform(points[0], q);
-    //最小、最大点を回転した点に設定
-    min = p;
-    max = p;
+    //最小、最大点を仮設定
+    min = Vector3::one * FLT_MAX;
+    max = Vector3::negOne * FLT_MIN;
+
     //回転した点に基づいて最小、最大点を更新する
-    for (size_t i = 1; i < points.size(); ++i) {
-        p = Vector3::transform(points[i], q);
+    for (size_t i = 0; i < points.size(); ++i) {
+        auto p = Vector3::transform(points[i], q);
         updateMinMax(p);
     }
 }

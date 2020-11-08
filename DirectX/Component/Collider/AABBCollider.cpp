@@ -1,6 +1,7 @@
 ﻿#include "AABBCollider.h"
 #include "../Mesh/MeshComponent.h"
 #include "../../DebugLayer/Debug.h"
+#include "../../DebugLayer/ImGuiWrapper.h"
 #include "../../Imgui/imgui.h"
 #include "../../Transform/Transform3D.h"
 #include "../../Utility/LevelLoader.h"
@@ -75,16 +76,8 @@ void AABBCollider::saveProperties(rapidjson::Document::AllocatorType& alloc, rap
 void AABBCollider::drawInspector() {
     Collider::drawInspector();
 
-    float min[3] = { mDefaultMin.x, mDefaultMin.y, mDefaultMin.z };
-    if (ImGui::DragFloat3("DefaultMin", min, 0.01f)) {
-        memcpy_s(&mDefaultMin, sizeof(mDefaultMin), min, sizeof(min));
-    }
-
-    float max[3] = { mDefaultMax.x, mDefaultMax.y, mDefaultMax.z };
-    if (ImGui::DragFloat3("DefaultMax", max, 0.01f)) {
-        memcpy_s(&mDefaultMax, sizeof(mDefaultMax), max, sizeof(max));
-    }
-
+    ImGuiWrapper::dragVector3("DefaultMin", mDefaultMin, 0.01f);
+    ImGuiWrapper::dragVector3("DefaultMax", mDefaultMax, 0.01f);
     ImGui::Checkbox("IsRenderCollision", &mIsRenderCollision);
 }
 
@@ -175,12 +168,12 @@ void AABBCollider::updateAABB() {
     const auto& pos = t.getPosition();
     const auto& scale = t.getScale();
     //回転を適用するために一時的なAABBを作成する
-    AABB aabb(mDefaultMin - t.getPivot(), mDefaultMax - t.getPivot());
+    AABB aabb((mDefaultMin - t.getPivot()) * scale, (mDefaultMax - t.getPivot()) * scale);
     //回転を適用する
     aabb.rotate(t.getRotation());
     //既存のAABBを更新する
-    mAABB.min = aabb.min * scale + pos;
-    mAABB.max = aabb.max * scale + pos;
+    mAABB.min = aabb.min + pos;
+    mAABB.max = aabb.max + pos;
 }
 
 void AABBCollider::updatePoints() {
