@@ -75,13 +75,15 @@ void AABBCollider::saveProperties(rapidjson::Document::AllocatorType& alloc, rap
 void AABBCollider::drawInspector() {
     Collider::drawInspector();
 
-    auto& min = mAABB.min;
-    float mi[3] = { min.x, min.y, min.z };
-    ImGui::DragFloat3("Min", mi, 0.01f);
+    float min[3] = { mDefaultMin.x, mDefaultMin.y, mDefaultMin.z };
+    if (ImGui::DragFloat3("DefaultMin", min, 0.01f)) {
+        memcpy_s(&mDefaultMin, sizeof(mDefaultMin), min, sizeof(min));
+    }
 
-    auto& max = mAABB.max;
-    float ma[3] = { max.x, max.y, max.z };
-    ImGui::DragFloat3("Max", ma, 0.01f);
+    float max[3] = { mDefaultMax.x, mDefaultMax.y, mDefaultMax.z };
+    if (ImGui::DragFloat3("DefaultMax", max, 0.01f)) {
+        memcpy_s(&mDefaultMax, sizeof(mDefaultMax), max, sizeof(max));
+    }
 
     ImGui::Checkbox("IsRenderCollision", &mIsRenderCollision);
 }
