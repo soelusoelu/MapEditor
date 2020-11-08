@@ -77,10 +77,12 @@ void AABBCollider::drawInspector() {
 
     auto& min = mAABB.min;
     float mi[3] = { min.x, min.y, min.z };
-    ImGui::SliderFloat3("Min", mi, -10000.f, 10000.f);
+    ImGui::DragFloat3("Min", mi, 0.01f);
+
     auto& max = mAABB.max;
     float ma[3] = { max.x, max.y, max.z };
-    ImGui::SliderFloat3("Max", ma, -10000.f, 10000.f);
+    ImGui::DragFloat3("Max", ma, 0.01f);
+
     ImGui::Checkbox("IsRenderCollision", &mIsRenderCollision);
 }
 

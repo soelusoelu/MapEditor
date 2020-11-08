@@ -47,13 +47,8 @@ void ImGuiInspector::drawInspect() const {
     drawTransform(target->transform());
     ImGui::Separator(); //区切り線
 
-    const auto& compList = target->componentManager().getAllComponents();
-    //ゲームオブジェクトがコンポーネントを所持していなければ終了
-    if (compList.empty()) {
-        return;
-    }
-
     //全コンポーネントの情報を表示
+    const auto& compList = target->componentManager().getAllComponents();
     for (const auto& comp : compList) {
         ImGui::SetNextTreeNodeOpen(true, ImGuiCond_Once);
         //コンポーネントごとに階層を作る
@@ -77,28 +72,8 @@ void ImGuiInspector::drawTag(const GameObject& target) const {
     ImGui::Text(tag.c_str());
 }
 
-void ImGuiInspector::drawTransform(const Transform3D& target) const {
-    ImGui::Text("Transform");
-
-    //Transformの各要素を描画
-    drawPosition(target);
-    drawRotation(target);
-    drawScale(target);
-}
-
-void ImGuiInspector::drawPosition(const Transform3D& target) const {
-    const auto& pos = target.getPosition();
-    ImGui::Text("    Position: X %.4f   Y %.4f   Z %.4f", pos.x, pos.y, pos.z);
-}
-
-void ImGuiInspector::drawRotation(const Transform3D& target) const {
-    const auto& euler = target.getRotation().euler();
-    ImGui::Text("    Rotation: X %.4f   Y %.4f   Z %.4f", euler.x, euler.y, euler.z);
-}
-
-void ImGuiInspector::drawScale(const Transform3D& target) const {
-    const auto& scale = target.getScale();
-    ImGui::Text("    Scale:    X %.4f   Y %.4f   Z %.4f", scale.x, scale.y, scale.z);
+void ImGuiInspector::drawTransform(Transform3D& target) const {
+    target.drawInspector();
 }
 
 void ImGuiInspector::drawComponent(Component& component) const {

@@ -11,7 +11,7 @@ DirectionalLight::DirectionalLight(GameObject& gameObject) :
 
 DirectionalLight::~DirectionalLight() = default;
 
-void DirectionalLight::onUpdateWorldTransform() {
+void DirectionalLight::lateUpdate() {
     mDirection = Vector3::transform(Vector3::up, transform().getRotation());
 }
 
