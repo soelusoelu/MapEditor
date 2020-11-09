@@ -1,29 +1,45 @@
 {
-  "tag": "Camera",
-  "properties": {
-    "position": [ 0.0, 20.0, -20.0 ],
-    "rotation": [ 20.0, 0.0, 0.0 ]
-  },
-  "components": [
-    {
-      "type": "Camera",
-      "properties": {
-        "fov": 45.0,
-        "nearClip": 0.01,
-        "farClip": 1000.0
-      }
+    "tag": "Camera",
+    "properties": {
+        "position": [
+            -8.65216064453125,
+            8.435157775878907,
+            -12.773935317993164
+        ],
+        "rotation": [
+            19.999980926513673,
+            31.3333683013916,
+            -4.5428342332343166e-7
+        ],
+        "scale": [
+            1.0,
+            1.0,
+            1.0
+        ]
     },
-    {
-      "type": "ListenerComponent",
-      "properties": {
-      }
-    },
-    {
-      "type": "CameraMove",
-      "properties": {
-        "cameraSpeed": 40.0,
-        "rotateSpeed": 40.0
-      }
-    }
-  ]
+    "components": [
+        {
+            "type": "Camera",
+            "properties": {
+                "fov": 45.0,
+                "nearClip": 0.009999999776482582,
+                "farClip": 1000.0
+            }
+        },
+        {
+            "type": "ListenerComponent",
+            "properties": {}
+        },
+        {
+            "type": "CameraMove",
+            "properties": {
+                "cameraSpeed": 40.0,
+                "rotateSpeed": 40.0
+            }
+        },
+        {
+            "type": "SaveThis",
+            "properties": {}
+        }
+    ]
 }

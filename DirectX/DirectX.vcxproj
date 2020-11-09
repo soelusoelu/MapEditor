@@ -183,6 +183,7 @@
     <ClCompile Include="Component\CollideOperation\MeshAdder.cpp" />
     <ClCompile Include="DebugLayer\ImGuiInspector.cpp" />
     <ClCompile Include="DebugLayer\ImGuiWrapper.cpp" />
+    <ClCompile Include="Component\Other\GameObjectSaveAndLoader.cpp" />
     <ClCompile Include="Imgui\imgui.cpp" />
     <ClCompile Include="Imgui\imgui_demo.cpp" />
     <ClCompile Include="Imgui\imgui_draw.cpp" />
@@ -195,6 +196,7 @@
     <ClCompile Include="Mesh\Fbx\FbxMaterialParser.cpp" />
     <ClCompile Include="Component\Mesh\SkinMeshComponent.cpp" />
     <ClCompile Include="DebugLayer\PointRenderer.cpp" />
+    <ClCompile Include="Component\Other\SaveThis.cpp" />
     <ClCompile Include="System\Shader\InputElementManager.cpp" />
     <ClCompile Include="System\Shader\ConstantBufferManager.cpp" />
     <ClCompile Include="DebugLayer\LineRenderer\LineRenderer.cpp" />
@@ -359,6 +361,7 @@
     <ClInclude Include="Component\CollideOperation\MeshAdder.h" />
     <ClInclude Include="DebugLayer\ImGuiInspector.h" />
     <ClInclude Include="DebugLayer\ImGuiWrapper.h" />
+    <ClInclude Include="Component\Other\GameObjectSaveAndLoader.h" />
     <ClInclude Include="Imgui\imconfig.h" />
     <ClInclude Include="Imgui\imgui.h" />
     <ClInclude Include="Imgui\imgui_impl_dx11.h" />
@@ -379,6 +382,7 @@
     <ClInclude Include="Collision\Square.h" />
     <ClInclude Include="Component\Mesh\SkinMeshComponent.h" />
     <ClInclude Include="DebugLayer\PointRenderer.h" />
+    <ClInclude Include="Component\Other\SaveThis.h" />
     <ClInclude Include="System\Shader\InputElementManager.h" />
     <ClInclude Include="System\Shader\ConstantBufferManager.h" />
     <ClInclude Include="DebugLayer\LineRenderer\LineRenderer.h" />

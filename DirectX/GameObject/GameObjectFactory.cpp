@@ -18,7 +18,9 @@
 #include "../Component/Light/PointLightComponent.h"
 #include "../Component/Mesh/MeshComponent.h"
 #include "../Component/Mesh/SkinMeshComponent.h"
+#include "../Component/Other/GameObjectSaveAndLoader.h"
 #include "../Component/Other/HitPointComponent.h"
+#include "../Component/Other/SaveThis.h"
 #include "../Component/Sample/RayMouse.h"
 #include "../Component/Scene/GamePlay.h"
 #include "../Component/Scene/Scene.h"
@@ -65,7 +67,9 @@ GameObjectFactory::GameObjectFactory() {
     ADD_COMPONENT(MeshComponent);
     ADD_COMPONENT(SkinMeshComponent);
 
+    ADD_COMPONENT(GameObjectSaveAndLoader);
     ADD_COMPONENT(HitPointComponent);
+    ADD_COMPONENT(SaveThis);
 
     ADD_COMPONENT(RayMouse);
 

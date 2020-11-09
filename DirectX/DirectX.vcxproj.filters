@@ -193,6 +193,8 @@
     <ClCompile Include="Imgui\imgui_widgets.cpp" />
     <ClCompile Include="DebugLayer\ImGuiInspector.cpp" />
     <ClCompile Include="DebugLayer\ImGuiWrapper.cpp" />
+    <ClCompile Include="Component\Other\GameObjectSaveAndLoader.cpp" />
+    <ClCompile Include="Component\Other\SaveThis.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component\ComponentManager.h" />
@@ -420,5 +422,7 @@
     <ClInclude Include="Imgui\imstb_truetype.h" />
     <ClInclude Include="DebugLayer\ImGuiInspector.h" />
     <ClInclude Include="DebugLayer\ImGuiWrapper.h" />
+    <ClInclude Include="Component\Other\GameObjectSaveAndLoader.h" />
+    <ClInclude Include="Component\Other\SaveThis.h" />
   </ItemGroup>
 </Project>
