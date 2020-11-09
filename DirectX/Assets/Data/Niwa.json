@@ -40,7 +40,7 @@
                     1.1114572286605836,
                     -3.152827024459839
                 ],
-                "isRenderCollision": true
+                "isRenderCollision": false
             }
         },
         {
@@ -56,7 +56,7 @@
                     1.521523118019104,
                     -3.1213724613189699
                 ],
-                "isRenderCollision": true
+                "isRenderCollision": false
             }
         },
         {
