@@ -205,11 +205,10 @@ void AABBCollider::computeDefaultPoint() {
         mAABB.max.y / scale.y - pos.y,
         mAABB.max.z / scale.z - pos.z
     );
-    AABB aabb(min + t.getPivot(), max + t.getPivot());
 
     //更新する
-    mDefaultMin = aabb.min;
-    mDefaultMax = aabb.max;
+    mDefaultMin = min + t.getPivot();
+    mDefaultMax = max + t.getPivot();
 }
 
 void AABBCollider::renderCollision() {
