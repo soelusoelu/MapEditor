@@ -2,9 +2,9 @@
     "tag": "Ground",
     "properties": {
         "position": [
-            -6.570000171661377,
-            2.640000104904175,
-            -2.1700000762939455
+            0.0,
+            12.699999809265137,
+            0.0
         ],
         "rotation": [
             -0.0,
@@ -21,9 +21,9 @@
         {
             "type": "MeshComponent",
             "properties": {
-                "fileName": "sphere.fbx",
-                "directoryPath": "Assets\\Model\\Shape\\",
-                "shaderName": "Mesh.hlsl",
+                "fileName": "yasiki+niwa.obj",
+                "directoryPath": "Assets\\Model\\Yashiki\\",
+                "shaderName": "MeshTexture.hlsl",
                 "alpha": 1.0
             }
         },
@@ -31,14 +31,14 @@
             "type": "AABBCollider",
             "properties": {
                 "min": [
-                    -0.9510578513145447,
-                    -0.9999999403953552,
-                    -1.0
+                    -11.079242706298829,
+                    0.0,
+                    -10.080199241638184
                 ],
                 "max": [
-                    0.9510578513145447,
-                    0.9999999403953552,
-                    1.0
+                    15.025423049926758,
+                    4.078740119934082,
+                    10.797080993652344
                 ],
                 "isRenderCollision": false
             }

@@ -168,7 +168,9 @@ void AABBCollider::updateAABB() {
     const auto& pos = t.getPosition();
     const auto& scale = t.getScale();
     //回転を適用するために一時的なAABBを作成する
-    AABB aabb((mDefaultMin - t.getPivot()) * scale, (mDefaultMax - t.getPivot()) * scale);
+    AABB aabb(mDefaultMin - t.getPivot(), mDefaultMax - t.getPivot());
+    aabb.min = aabb.min * scale;
+    aabb.max = aabb.max * scale;
     //回転を適用する
     aabb.rotate(t.getRotation());
     //既存のAABBを更新する
@@ -195,20 +197,23 @@ void AABBCollider::computeDefaultPoint() {
     const auto& scale = t.getScale();
 
     //updateAABBの逆順に計算していく
-    auto min = Vector3(
-        mAABB.min.x / scale.x - pos.x,
-        mAABB.min.y / scale.y - pos.y,
-        mAABB.min.z / scale.z - pos.z
+    AABB aabb(mAABB);
+    aabb.min = Vector3(
+        mAABB.min.x / scale.x,
+        mAABB.min.y / scale.y,
+        mAABB.min.z / scale.z
     );
-    auto max = Vector3(
-        mAABB.max.x / scale.x - pos.x,
-        mAABB.max.y / scale.y - pos.y,
-        mAABB.max.z / scale.z - pos.z
+    aabb.max = Vector3(
+        mAABB.max.x / scale.x,
+        mAABB.max.y / scale.y,
+        mAABB.max.z / scale.z
     );
+    aabb.min -= pos;
+    aabb.max -= pos;
 
     //更新する
-    mDefaultMin = min + t.getPivot();
-    mDefaultMax = max + t.getPivot();
+    mDefaultMin = aabb.min + t.getPivot();
+    mDefaultMax = aabb.max + t.getPivot();
 }
 
 void AABBCollider::renderCollision() {

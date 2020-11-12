@@ -23,11 +23,9 @@
             "properties": {
                 "gameObjectNames": [
                     "Niwa",
+                    "test",
                     "sphere",
-                    "sphere1",
-                    "sphere2",
-                    "sphere3",
-                    "box"
+                    "yasiki+niwa"
                 ]
             }
         },

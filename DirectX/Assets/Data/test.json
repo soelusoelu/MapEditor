@@ -2,9 +2,9 @@
     "tag": "Ground",
     "properties": {
         "position": [
-            2.430000066757202,
-            1.0,
-            -5.050000190734863
+            10.039999961853028,
+            0.0,
+            0.0
         ],
         "rotation": [
             -0.0,
@@ -21,9 +21,9 @@
         {
             "type": "MeshComponent",
             "properties": {
-                "fileName": "sphere.fbx",
-                "directoryPath": "Assets\\Model\\Shape\\",
-                "shaderName": "Mesh.hlsl",
+                "fileName": "test.obj",
+                "directoryPath": "Assets\\Model\\Test\\",
+                "shaderName": "MeshTexture.hlsl",
                 "alpha": 1.0
             }
         },
@@ -31,14 +31,14 @@
             "type": "AABBCollider",
             "properties": {
                 "min": [
-                    -0.9510578513145447,
-                    -0.9999999403953552,
-                    -1.0
+                    -1.0945910215377808,
+                    0.0,
+                    -3.9114930629730226
                 ],
                 "max": [
-                    0.9510578513145447,
-                    0.9999999403953552,
-                    1.0
+                    2.8032705783843996,
+                    1.3777058124542237,
+                    1.5775279998779297
                 ],
                 "isRenderCollision": false
             }
