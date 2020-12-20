@@ -22,10 +22,9 @@
             "type": "GameObjectSaveAndLoader",
             "properties": {
                 "gameObjectNames": [
-                    "Niwa",
-                    "test",
-                    "sphere",
-                    "yasiki+niwa"
+                    "Plane",
+                    "box",
+                    "box1"
                 ]
             }
         },

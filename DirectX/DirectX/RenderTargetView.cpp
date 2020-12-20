@@ -7,7 +7,8 @@ RenderTargetView::RenderTargetView(const Texture2D& texture2D, const RenderTarge
     mRenderTargetView(nullptr) {
     auto dev = MyDirectX::DirectX::instance().device();
     if (desc) {
-        dev->CreateRenderTargetView(texture2D.texture2D(), &toRTVDesc(desc), &mRenderTargetView);
+        const auto& temp = toRTVDesc(desc);
+        dev->CreateRenderTargetView(texture2D.texture2D(), &temp, &mRenderTargetView);
     } else {
         dev->CreateRenderTargetView(texture2D.texture2D(), nullptr, &mRenderTargetView);
     }

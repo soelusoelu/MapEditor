@@ -11,7 +11,8 @@ ShaderResourceView::ShaderResourceView(const Texture2D& texture2D) :
 
 ShaderResourceView::ShaderResourceView(const Texture2D& texture2D, const ShaderResourceViewDesc& desc) :
     mShaderResourceView(nullptr) {
-    MyDirectX::DirectX::instance().device()->CreateShaderResourceView(texture2D.texture2D(), &toSRVDesc(desc), &mShaderResourceView);
+    const auto& temp = toSRVDesc(desc);
+    MyDirectX::DirectX::instance().device()->CreateShaderResourceView(texture2D.texture2D(), &temp, &mShaderResourceView);
 }
 
 ShaderResourceView::ShaderResourceView(ID3D11ShaderResourceView* view) :

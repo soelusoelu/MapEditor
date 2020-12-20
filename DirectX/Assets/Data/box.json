@@ -2,18 +2,18 @@
     "tag": "Ground",
     "properties": {
         "position": [
-            0.0,
-            0.0,
+            6.079999923706055,
+            4.760000228881836,
             0.0
         ],
         "rotation": [
-            -89.99999237060547,
+            -0.0,
             0.0,
             0.0
         ],
         "scale": [
-            10.0,
-            10.0,
+            1.0,
+            1.0,
             1.0
         ]
     },
@@ -21,7 +21,7 @@
         {
             "type": "MeshComponent",
             "properties": {
-                "fileName": "Plane.fbx",
+                "fileName": "box.fbx",
                 "directoryPath": "Assets\\Model\\Shape\\",
                 "shaderName": "Mesh.hlsl",
                 "alpha": 1.0
@@ -33,12 +33,12 @@
                 "min": [
                     -1.0,
                     -1.0,
-                    0.0
+                    -2.3712637424468996
                 ],
                 "max": [
-                    1.0,
-                    1.0,
-                    0.0
+                    5.493105888366699,
+                    3.4018850326538088,
+                    3.786367177963257
                 ],
                 "isRenderCollision": false
             }
@@ -46,6 +46,22 @@
         {
             "type": "SaveThis",
             "properties": {}
+        },
+        {
+            "type": "AABBCollider",
+            "properties": {
+                "min": [
+                    -8.722597122192383,
+                    -4.711099624633789,
+                    -1.0
+                ],
+                "max": [
+                    1.0,
+                    2.117460250854492,
+                    5.469664573669434
+                ],
+                "isRenderCollision": false
+            }
         }
     ]
 }

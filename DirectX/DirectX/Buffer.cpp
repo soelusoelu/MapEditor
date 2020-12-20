@@ -7,14 +7,17 @@ Buffer::Buffer(const BufferDesc& desc) :
     mDesc(desc),
     mBuffer(nullptr) {
     //バッファの作成
-    MyDirectX::DirectX::instance().device()->CreateBuffer(&toBufferDesc(desc), nullptr, &mBuffer);
+    const auto& temp = toBufferDesc(desc);
+    MyDirectX::DirectX::instance().device()->CreateBuffer(&temp, nullptr, &mBuffer);
 }
 
 Buffer::Buffer(const BufferDesc& desc, const SubResourceDesc& data) :
     mDesc(desc),
     mBuffer(nullptr) {
     //バッファの作成
-    MyDirectX::DirectX::instance().device()->CreateBuffer(&toBufferDesc(desc), &toSubResource(data), &mBuffer);
+    const auto& temp = toBufferDesc(desc);
+    const auto& sub = toSubResource(data);
+    MyDirectX::DirectX::instance().device()->CreateBuffer(&temp, &sub, &mBuffer);
 }
 
 Buffer::~Buffer() {

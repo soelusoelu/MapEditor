@@ -2,27 +2,27 @@
     "tag": "Ground",
     "properties": {
         "position": [
-            -3.130000114440918,
-            -6.289999961853027,
-            1.5199999809265137
+            0.0,
+            0.0,
+            0.0
         ],
         "rotation": [
-            0.00000213443399843527,
-            46.298675537109378,
-            -14.899981498718262
+            -0.0,
+            0.0,
+            0.0
         ],
         "scale": [
-            1.5499999523162842,
-            2.5799999237060549,
-            0.7300000190734863
+            1.0,
+            1.0,
+            1.0
         ]
     },
     "components": [
         {
             "type": "MeshComponent",
             "properties": {
-                "fileName": "Test/test.obj",
-                "directoryPath": "Assets\\Model\\",
+                "fileName": "sky.obj",
+                "directoryPath": "Assets\\Model\\Yashiki\\",
                 "shaderName": "MeshTexture.hlsl",
                 "alpha": 1.0
             }
@@ -31,14 +31,14 @@
             "type": "AABBCollider",
             "properties": {
                 "min": [
-                    -4.361124038696289,
-                    0.0,
-                    -4.484596252441406
+                    -100.0,
+                    -100.0,
+                    -100.0
                 ],
                 "max": [
-                    -2.491682767868042,
-                    1.5400376319885255,
-                    -3.2158234119415285
+                    100.0,
+                    100.0,
+                    100.0
                 ],
                 "isRenderCollision": true
             }

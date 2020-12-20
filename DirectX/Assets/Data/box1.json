@@ -3,17 +3,17 @@
     "properties": {
         "position": [
             0.0,
-            0.0,
+            2.890000104904175,
             0.0
         ],
         "rotation": [
-            -89.99999237060547,
-            0.0,
-            0.0
+            -75.79952239990235,
+            53.599796295166019,
+            109.29998016357422
         ],
         "scale": [
-            10.0,
-            10.0,
+            1.0,
+            1.0,
             1.0
         ]
     },
@@ -21,7 +21,7 @@
         {
             "type": "MeshComponent",
             "properties": {
-                "fileName": "Plane.fbx",
+                "fileName": "box.fbx",
                 "directoryPath": "Assets\\Model\\Shape\\",
                 "shaderName": "Mesh.hlsl",
                 "alpha": 1.0
@@ -33,14 +33,14 @@
                 "min": [
                     -1.0,
                     -1.0,
-                    0.0
+                    -1.0
                 ],
                 "max": [
                     1.0,
                     1.0,
-                    0.0
+                    1.0
                 ],
-                "isRenderCollision": false
+                "isRenderCollision": true
             }
         },
         {

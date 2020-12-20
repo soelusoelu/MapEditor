@@ -60,7 +60,8 @@ void BlendState::execute(unsigned renderTarget) const {
     Microsoft::WRL::ComPtr<ID3D11BlendState> blend;
 
     auto& dx = MyDirectX::DirectX::instance();
-    dx.device()->CreateBlendState(&toBlendDesc(mDesc, renderTarget), &blend);
+    const auto& temp = toBlendDesc(mDesc, renderTarget);
+    dx.device()->CreateBlendState(&temp, &blend);
     unsigned mask = 0xffffffff;
     dx.deviceContext()->OMSetBlendState(blend.Get(), nullptr, mask);
 }

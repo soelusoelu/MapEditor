@@ -3,26 +3,26 @@
     "properties": {
         "position": [
             0.0,
-            0.0,
+            1.1699999570846558,
             0.0
         ],
         "rotation": [
             -89.99999237060547,
-            0.0,
+            180.0,
             0.0
         ],
         "scale": [
-            10.0,
-            10.0,
-            1.0
+            100.0,
+            100.0,
+            100.0
         ]
     },
     "components": [
         {
             "type": "MeshComponent",
             "properties": {
-                "fileName": "Plane.fbx",
-                "directoryPath": "Assets\\Model\\Shape\\",
+                "fileName": "tonbi4_sankaku.fbx",
+                "directoryPath": "Assets\\Model\\Bird\\",
                 "shaderName": "Mesh.hlsl",
                 "alpha": 1.0
             }
@@ -31,16 +31,16 @@
             "type": "AABBCollider",
             "properties": {
                 "min": [
-                    -1.0,
-                    -1.0,
-                    0.0
+                    -0.1003432348370552,
+                    -1.174134612083435,
+                    0.05786139890551567
                 ],
                 "max": [
-                    1.0,
-                    1.0,
-                    0.0
+                    0.04868748039007187,
+                    -1.1433217525482178,
+                    0.1193772479891777
                 ],
-                "isRenderCollision": false
+                "isRenderCollision": true
             }
         },
         {

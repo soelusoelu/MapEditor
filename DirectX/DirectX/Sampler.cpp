@@ -4,7 +4,8 @@
 
 Sampler::Sampler(const SamplerDesc& desc) :
     mDesc(desc) {
-    MyDirectX::DirectX::instance().device()->CreateSamplerState(&toSamplerDesc(desc), &mSampler);
+    const auto& temp = toSamplerDesc(desc);
+    MyDirectX::DirectX::instance().device()->CreateSamplerState(&temp, &mSampler);
 }
 
 Sampler::~Sampler() {
